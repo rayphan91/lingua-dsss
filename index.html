@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinguaDiSSS — Tim Ferriss Method</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0c0c0e;--sur:#13131a;--sur2:#1a1a24;--sur3:#22222e;--bdr:rgba(255,255,255,0.07);--bdr2:rgba(255,255,255,0.12);--txt:#ece9e0;--mut:#6b6860;--mut2:#9a9890;--it:#e8a84a;--uk:#4e8ef7;--acc:var(--it);--acd:rgba(232,168,74,0.1);--grn:#4ade80;--red:#f87171;--prp:#c084fc;--org:#fb923c;}
+body.uk{--acc:var(--uk);--acd:rgba(78,142,247,0.1)}
+body{background:var(--bg);color:var(--txt);font-family:"IBM Plex Sans",sans-serif;font-weight:300;overflow-x:hidden}
+.app{display:flex;min-height:100vh}
+.sidebar{width:240px;flex-shrink:0;background:var(--sur);border-right:1px solid var(--bdr);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.main{flex:1;min-width:0}
+.logo-wrap{padding:1.4rem 1.2rem;border-bottom:1px solid var(--bdr)}
+.logo{font-family:"Playfair Display",serif;font-size:1.2rem;font-weight:900;letter-spacing:-.02em}
+.logo span{color:var(--acc);transition:color .3s}
+.logo-sub{font-family:"IBM Plex Mono",monospace;font-size:.58rem;color:var(--mut);letter-spacing:.15em;text-transform:uppercase;margin-top:.2rem}
+.lang-tog{margin:.8rem;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:.25rem;display:flex;position:relative}
+.tog-pill{position:absolute;top:.25rem;left:.25rem;height:calc(100% - .5rem);width:calc(50% - .25rem);background:var(--acc);border-radius:5px;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:0}
+body.uk .tog-pill{left:calc(50%)}
+.tog-btn{flex:1;padding:.45rem;font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:500;border:none;background:transparent;cursor:pointer;border-radius:5px;z-index:1;position:relative;transition:color .3s;color:var(--mut);letter-spacing:.03em}
+.tog-btn.active{color:var(--bg);font-weight:600}
+.nav-sec{padding:.4rem .8rem}
+.nav-lbl{font-family:"IBM Plex Mono",monospace;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);padding:.7rem .3rem .3rem}
+.nav-itm{display:flex;align-items:center;gap:.55rem;padding:.5rem .7rem;border-radius:7px;font-size:.8rem;color:var(--mut2);cursor:pointer;transition:all .15s;margin-bottom:.05rem;border:none;background:transparent;width:100%;text-align:left}
+.nav-itm:hover{background:var(--sur2);color:var(--txt)}
+.nav-itm.active{background:var(--acd);color:var(--acc)}
+.nav-icon{width:18px;text-align:center;font-size:.9rem}
+.sb-prog{margin-top:auto;padding:.9rem 1rem;border-top:1px solid var(--bdr)}
+.sb-lbl{font-family:"IBM Plex Mono",monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:.4rem}
+.sb-big{font-family:"IBM Plex Mono",monospace;font-size:1.6rem;font-weight:500;color:var(--acc);transition:color .3s;display:block;line-height:1}
+.sb-bar{height:3px;background:var(--sur3);border-radius:10px;margin:.4rem 0;overflow:hidden}
+.sb-fill{height:100%;background:var(--acc);border-radius:10px;transition:width .5s ease,background .3s;width:0%}
+.sb-nums{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:var(--mut)}
+.panel{display:none;padding:2rem 2.2rem;animation:fadeUp .3s ease both}
+.panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.ph{border-bottom:1px solid var(--bdr);padding:1.2rem 2.2rem;display:flex;align-items:center;justify-content:space-between}
+.ph-lang{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--acc);background:var(--acd);border:1px solid var(--acc);padding:.28rem .8rem;border-radius:100px;transition:all .3s}
+.ptitle{font-family:"Playfair Display",serif;font-size:1.8rem;font-weight:900;letter-spacing:-.03em;margin-bottom:.3rem}
+.ptitle em{font-style:italic;color:var(--acc);transition:color .3s}
+.psub{font-size:.84rem;color:var(--mut2);line-height:1.65;max-width:600px;margin-bottom:1.5rem}
+.fw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.fw-card{background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:1.4rem;position:relative;overflow:hidden;transition:border-color .2s}
+.fw-card:hover{border-color:var(--bdr2)}
+.fw-bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--fc)}
+.fw-tag{font-family:"IBM Plex Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--fc);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+.fw-dot{width:5px;height:5px;border-radius:50%;background:var(--fc)}
+.fw-h{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;margin-bottom:.5rem}
+.fw-d{font-size:.8rem;color:var(--mut2);line-height:1.65;margin-bottom:.9rem}
+.fw-q{background:var(--sur2);border-left:2px solid var(--fc);padding:.6rem .9rem;border-radius:0 7px 7px 0;font-family:"Playfair Display",serif;font-style:italic;font-size:.8rem;color:var(--mut2);line-height:1.5;margin-bottom:.9rem}
+.chk-list{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.chk-itm{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--mut2)}
+.chk-box{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--bdr2);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.55rem;transition:all .2s}
+.chk-box.done{background:var(--grn);border-color:var(--grn);color:#000;font-weight:700}
+.wb-stats{display:flex;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.wb-stat{background:var(--sur);border:1px solid var(--bdr);border-radius:9px;padding:.7rem 1rem;text-align:center}
+.wb-n{font-family:"IBM Plex Mono",monospace;font-size:1.3rem;font-weight:500;color:var(--acc);transition:color .3s;display:block}
+.wb-l{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--mut)}
+.controls{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.2rem;align-items:center}
+.srch{flex:1;min-width:180px;background:var(--sur);border:1px solid var(--bdr);border-radius:7px;padding:.5rem .9rem;font-family:"IBM Plex Sans",sans-serif;font-size:.84rem;color:var(--txt);outline:none;transition:border-color .2s}
+.srch:focus{border-color:var(--acc)}
+.srch::placeholder{color:var(--mut)}
+.cats{display:flex;gap:.35rem;flex-wrap:wrap}
+.cat{padding:.35rem .8rem;border-radius:100px;font-family:"IBM Plex Mono",monospace;font-size:.65rem;border:1px solid var(--bdr);background:transparent;color:var(--mut2);cursor:pointer;transition:all .15s}
+.cat:hover,.cat.on{border-color:var(--acc);color:var(--acc);background:var(--acd)}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.7rem;max-height:60vh;overflow-y:auto;padding-right:.2rem;scrollbar-width:thin;scrollbar-color:var(--sur3) transparent}
+.wcard{background:var(--sur);border:1px solid var(--bdr);border-radius:10px;padding:.9rem;cursor:pointer;transition:all .15s;position:relative;animation:fadeUp .25s ease both}
+.wcard:hover{border-color:var(--bdr2);transform:translateY(-1px)}
+.wcard.done{border-color:var(--grn);background:rgba(74,222,128,.05)}
+.wc-rk{font-family:"IBM Plex Mono",monospace;font-size:.56rem;color:var(--acc);transition:color .3s;margin-bottom:.25rem;letter-spacing:.05em}
+.wc-w{font-size:.98rem;font-weight:500;color:var(--txt);margin-bottom:.12rem}
+.wc-e{font-size:.72rem;color:var(--mut2);margin-bottom:.45rem}
+.wc-ct{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;padding:.08rem .35rem;border-radius:3px}
+.wc-ct.verbs{background:rgba(78,142,247,.15);color:#6ba8f7}
+.wc-ct.nouns{background:rgba(232,168,74,.15);color:#e8a84a}
+.wc-ct.adj{background:rgba(192,132,252,.15);color:#c084fc}
+.wc-ct.connectors{background:rgba(74,222,128,.15);color:#4ade80}
+.wc-ct.phrases{background:rgba(251,146,60,.15);color:#fb923c}
+.wc-ck{position:absolute;top:.5rem;right:.5rem;font-size:.65rem;color:var(--grn)}
+.ovl{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(12px);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem}
+.ovl.open{display:flex}
+.modal{background:var(--sur);border:1px solid var(--bdr2);border-radius:18px;width:100%;max-width:500px;padding:1.8rem;position:relative;animation:modalIn .25s cubic-bezier(.34,1.56,.64,1);max-height:90vh;overflow-y:auto}
+@keyframes modalIn{from{opacity:0;transform:scale(.93) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.m-close{position:absolute;top:.9rem;right:.9rem;width:28px;height:28px;border-radius:50%;background:var(--sur2);border:1px solid var(--bdr);color:var(--mut2);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.m-close:hover{background:var(--sur3);color:var(--txt)}
+.m-rk{font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:var(--acc);letter-spacing:.1em;margin-bottom:.4rem;transition:color .3s}
+.m-nat{font-family:"Playfair Display",serif;font-size:2rem;font-weight:700;color:var(--txt);margin-bottom:.15rem}
+.m-eng{font-size:.95rem;color:var(--mut2);margin-bottom:1.2rem}
+.m-sec{background:var(--sur2);border:1px solid var(--bdr);border-radius:10px;padding:.9rem 1rem;margin-bottom:.7rem}
+.m-sl{font-family:"IBM Plex Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);margin-bottom:.35rem;transition:color .3s}
+.m-sc{font-size:.85rem;color:var(--txt);line-height:1.6}
+.m-ss{font-size:.75rem;color:var(--mut2);margin-top:.2rem;font-style:italic}
+.m-pron{font-family:"IBM Plex Mono",monospace;font-size:.88rem;color:var(--txt)}
+.m-acts{display:flex;gap:.7rem;margin-top:1.3rem}
+.btn{flex:1;padding:.65rem;border-radius:9px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:500;cursor:pointer;border:1px solid var(--bdr);transition:all .2s;letter-spacing:.04em}
+.btn-p{background:var(--acc);border-color:var(--acc);color:var(--bg)}
+.btn-p:hover{opacity:.9;transform:translateY(-1px)}
+.btn-s{background:transparent;color:var(--mut2)}
+.btn-s:hover{background:var(--sur2);color:var(--txt)}
+.btn-g{background:var(--grn);border-color:var(--grn);color:#000;font-weight:700}
+.ai-load{display:flex;align-items:center;gap:.5rem;color:var(--mut2);font-size:.8rem}
+.dots span{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--acc);animation:dot 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes dot{0%,60%,100%{opacity:.2;transform:scale(1)}30%{opacity:1;transform:scale(1.4)}}
+.fc-wrap{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:1.3rem}
+.fc-scene{width:100%;height:240px;perspective:1200px;cursor:pointer}
+.fc-inn{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.fc-inn.flip{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;background:var(--sur);border:1px solid var(--bdr);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.8rem;text-align:center}
+.fc-back{transform:rotateY(180deg);background:var(--sur2)}
+.fc-lb{font-family:"IBM Plex Mono",monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:.8rem;transition:color .3s}
+.fc-wd{font-family:"Playfair Display",serif;font-size:2.3rem;font-weight:700;color:var(--txt);margin-bottom:.3rem}
+.fc-ht{font-size:.75rem;color:var(--mut)}
+.fc-tr{font-size:1.2rem;color:var(--txt);font-weight:500;margin-bottom:.4rem}
+.fc-ex{font-size:.8rem;color:var(--mut2);font-style:italic;line-height:1.5;max-width:300px}
+.fc-btns{display:flex;gap:.9rem}
+.fc-btn{flex:1;padding:.7rem;border-radius:11px;font-family:"IBM Plex Mono",monospace;font-size:.73rem;font-weight:500;cursor:pointer;border:1px solid var(--bdr);transition:all .18s}
+.fc-skip{background:transparent;color:var(--mut2)}.fc-skip:hover{background:var(--sur2)}
+.fc-know{background:var(--grn);border-color:var(--grn);color:#000;font-weight:700}
+.fc-know:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(74,222,128,.3)}
+.fc-bar{height:3px;background:var(--sur2);border-radius:10px;overflow:hidden;margin-bottom:.35rem}
+.fc-fill{height:100%;background:var(--acc);border-radius:10px;transition:width .3s,background .3s}
+.fc-nums{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:.65rem;color:var(--mut)}
+.streak-cal{background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:1.4rem;margin-bottom:1.2rem}
+.s-title{font-family:"Playfair Display",serif;font-size:1.15rem;font-weight:700;margin-bottom:.2rem}
+.s-sub{font-size:.78rem;color:var(--mut2);margin-bottom:1rem}
+.s-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.35rem}
+.s-day{aspect-ratio:1;border-radius:5px;background:var(--sur2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:"IBM Plex Mono",monospace;font-size:.52rem;color:var(--mut);cursor:pointer;transition:all .15s}
+.s-day:hover{border-color:var(--acc)}.s-day.on{background:var(--acc);border-color:var(--acc);color:var(--bg);font-weight:700}.s-day.today{box-shadow:0 0 0 1px var(--acc)}
+.s-stats{display:flex;gap:.8rem;margin-top:.9rem;flex-wrap:wrap}
+.s-stat{flex:1;background:var(--sur2);border-radius:8px;padding:.7rem;text-align:center}
+.s-n{font-family:"IBM Plex Mono",monospace;font-size:1.4rem;font-weight:500;color:var(--acc);display:block;transition:color .3s}
+.s-l{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--mut)}
+.commit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin-top:1.2rem}
+.commit{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;padding:1.1rem;cursor:pointer;transition:border-color .2s}
+.commit:hover{border-color:var(--acc)}.commit.on{border-color:var(--acc);background:var(--acd)}
+.cm-e{font-size:1.6rem;margin-bottom:.5rem;display:block}.cm-n{font-size:.85rem;font-weight:500;margin-bottom:.3rem}.cm-d{font-size:.75rem;color:var(--mut2);line-height:1.5}
+
+/* ── Diagnostic sentences ── */
+.diag-grid{display:grid;gap:1rem;margin-top:1.5rem}
+.diag-card{background:var(--sur);border:1px solid var(--brd);border-radius:12px;padding:1.2rem 1.4rem;transition:border-color .2s}
+.diag-card:hover{border-color:var(--acc)}
+.diag-n{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:.4rem}
+.diag-en{font-size:1rem;font-weight:600;color:var(--txt);margin-bottom:.6rem;font-family:'Playfair Display',serif}
+.diag-tr{font-size:.88rem;color:var(--mut2);margin-bottom:.5rem;font-style:italic}
+.diag-why{font-size:.75rem;color:var(--mut);line-height:1.5;border-top:1px solid var(--brd);padding-top:.5rem;margin-top:.5rem}
+
+/* ── Cyrillic alphabet ── */
+.alpha-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.7rem;margin-top:1.5rem}
+.alpha-card{background:var(--sur);border:1px solid var(--brd);border-radius:10px;padding:.9rem;text-align:center;transition:all .2s;cursor:default}
+.alpha-card:hover{border-color:var(--acc);background:var(--acd);transform:translateY(-2px)}
+.alpha-letter{font-size:2.2rem;font-weight:700;color:var(--txt);line-height:1;margin-bottom:.3rem}
+.alpha-roman{font-size:.7rem;font-family:'IBM Plex Mono',monospace;color:var(--acc);margin-bottom:.2rem;letter-spacing:.08em}
+.alpha-ex{font-size:.72rem;color:var(--mut2)}
+.alpha-section{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin:1.2rem 0 .5rem}
+.alpha-intro{background:var(--sur);border:1px solid var(--brd);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1rem;font-size:.82rem;color:var(--mut2);line-height:1.7}
+.alpha-intro strong{color:var(--txt)}
+
+@media(max-width:700px){.sidebar{display:none}.panel{padding:1rem 1.2rem}}
+</style>
+</head>
+<body id="body">
+<div class="app">
+<aside class="sidebar">
+  <div class="logo-wrap"><div class="logo">Lingua<span id="la">DiSSS</span></div><div class="logo-sub">Tim Ferriss · DOAC</div></div>
+  <div class="lang-tog"><div class="tog-pill" id="pill"></div><button class="tog-btn active" id="btn-it" onclick="setLang('it')">&#127470;&#127481; Italian</button><button class="tog-btn" id="btn-uk" onclick="setLang('uk')">&#127482;&#127462; Ukrainian</button></div>
+  <nav class="nav-sec">
+    <div class="nav-lbl">// Method</div>
+    <button class="nav-itm active" onclick="show('framework',this)"><span class="nav-icon">&#128208;</span>DiSSS Framework</button>
+    <div class="nav-lbl">// Learn</div>
+    <button class="nav-itm" onclick="show('wordbank',this)"><span class="nav-icon">&#128218;</span>Word Bank</button>
+    <button class="nav-itm" onclick="show('flashcards',this)"><span class="nav-icon">&#127183;</span>Flashcards</button>
+    <button class="nav-itm" onclick="show('diagnostic',this)"><span class="nav-icon">&#129299;</span>12 Diagnostics</button>
+    <button class="nav-itm" id="nav-alphabet" onclick="show('alphabet',this)" style="display:none"><span class="nav-icon">&#128292;</span>Cyrillic</button>
+    <div class="nav-lbl">// Commit</div>
+    <button class="nav-itm" onclick="show('stakes',this)"><span class="nav-icon">&#128293;</span>Stakes &amp; Streak</button>
+  </nav>
+  <div class="sb-prog"><div class="sb-lbl">// Progress</div><span class="sb-big" id="sb-big">0</span><div class="sb-bar"><div class="sb-fill" id="sb-fill"></div></div><div class="sb-nums"><span id="sb-l">0 learned</span><span>500 goal</span></div></div>
+</aside>
+<main class="main">
+<div class="ph"><div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)">// DiSSS Method &middot; Tim Ferriss &middot; DOAC</div><div class="ph-lang" id="ph-lang">&#127470;&#127481; Italian</div></div>
+<div class="panel active" id="panel-framework">
+  <div class="ptitle">The <em>DiSSS</em> Framework</div>
+  <div class="psub">Tim Ferriss&#39;s method from DOAC — now with Italian &amp; Ukrainian. Deconstruct language into minimal learnable units, select the high-leverage 1,500 words, sequence for maximum early wins, and create stakes that make quitting costly.</div>
+  <div class="fw-grid">
+    <div class="fw-card" style="--fc:#c084fc"><div class="fw-bar"></div><div class="fw-tag"><div class="fw-dot"></div>D &middot; Deconstruction</div><div class="fw-h">Break it into Lego bricks.</div><div class="fw-d">Shatter the amorphous blob of "a language" into its smallest learnable units. Find the 12 diagnostic sentences. Identify your failure points before they kill your momentum.</div><div class="fw-q">"What are the minimal learnable units? Deconstruct the skill into Lego pieces &mdash; then find the right 20%." &mdash; Tim Ferriss, DOAC</div><ul class="chk-list"><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Translate the 12 diagnostic sentences</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Identify 3 core grammar failure points</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Interview a native speaker</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Map the sound system (phonetics)</li></ul></div>
+    <div class="fw-card" style="--fc:#4ade80"><div class="fw-bar"></div><div class="fw-tag"><div class="fw-dot"></div>S&#185; &middot; Selection</div><div class="fw-h">The 500 that build your base.</div><div class="fw-d">Pareto applied ruthlessly: Pareto applied ruthlessly. Master these 500 highest-frequency words and you cover the vast majority of everyday conversation — the foundation before you scale to 1,500.</div><div class="fw-q">"In any language you can take 1,500&ndash;2,000 words and be functionally, conversationally fluent." &mdash; Tim Ferriss</div><ul class="chk-list"><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Complete top 100 words</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Reach 250 words milestone</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Complete all 500 words</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Have first conversation with a native speaker</li></ul></div>
+    <div class="fw-card" style="--fc:#fb923c"><div class="fw-bar"></div><div class="fw-tag"><div class="fw-dot"></div>S&#178; &middot; Sequencing</div><div class="fw-h">Logical &ne; conventional.</div><div class="fw-d">Josh Waitzkin learned chess from the endgame. Ferriss learned tango by learning the female role first. The optimal learning order is almost never the conventional one.</div><div class="fw-q">"Starting at the endgame reveals principles that openings obscure. Invert the conventional sequence." &mdash; Tim Ferriss</div><ul class="chk-list"><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Phonetics &amp; sound system (week 1)</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Top 100 nouns + verbs (weeks 2&ndash;3)</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Core sentence structure (week 4)</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>First conversation with native speaker</li></ul></div>
+    <div class="fw-card" style="--fc:#f87171"><div class="fw-bar"></div><div class="fw-tag"><div class="fw-dot"></div>S&#179; &middot; Stakes</div><div class="fw-h">Put real skin in the game.</div><div class="fw-d">Motivation fades. Stakes don&#39;t. Loss aversion is 2&times; more powerful than the pleasure of gain. Tie your future self to today&#39;s commitment with something that genuinely hurts to lose.</div><div class="fw-q">"Set up stakes with real consequences. If I don&#39;t complete this by X, I will lose Y." &mdash; Tim Ferriss, DOAC</div><ul class="chk-list"><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Announce 30-day goal publicly</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Set up anti-charity commitment</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Book a real conversation with native speaker</li><li class="chk-itm"><div class="chk-box" onclick="chk(this)"></div>Weekly accountability check-in scheduled</li></ul></div>
+  </div>
+</div>
+<div class="panel" id="panel-wordbank">
+  <div class="ptitle"><em>500</em> Words</div>
+  <div class="psub">The high-frequency selection. Click any word for AI-generated context: example sentence, pronunciation guide, memory hook, and cultural notes.</div>
+  <div class="wb-stats"><div class="wb-stat"><span class="wb-n" id="wb-l">0</span><div class="wb-l">Learned</div></div><div class="wb-stat"><span class="wb-n">500</span><div class="wb-l">Total</div></div><div class="wb-stat"><span class="wb-n" id="wb-p">0%</span><div class="wb-l">Complete</div></div><div class="wb-stat"><span class="wb-n" id="wb-s">&#8212;</span><div class="wb-l">Showing</div></div></div>
+  <div class="controls"><input class="srch" id="srch" placeholder="Search words&#8230;" oninput="render()"><div class="cats"><button class="cat on" onclick="setCat('all',this)">All</button><button class="cat" onclick="setCat('verbs',this)">Verbs</button><button class="cat" onclick="setCat('nouns',this)">Nouns</button><button class="cat" onclick="setCat('adj',this)">Adjectives</button><button class="cat" onclick="setCat('connectors',this)">Connectors</button><button class="cat" onclick="setCat('phrases',this)">Phrases</button><button class="cat" onclick="setCat('learned',this)">&#10003; Learned</button></div></div>
+  <div class="wgrid" id="wgrid"></div>
+</div>
+<div class="panel" id="panel-flashcards">
+  <div class="ptitle">Flashcard <em>Drill</em></div>
+  <div class="psub">Cards drawn from unlearned words, weighted toward highest-frequency ones. Tap to flip.</div>
+  <div class="fc-wrap">
+    <div><div class="fc-bar"><div class="fc-fill" id="fc-fill"></div></div><div class="fc-nums"><span id="fc-seen">0 seen</span><span id="fc-known">0 known</span></div></div>
+    <div class="fc-scene" id="fc-scene" onclick="flipCard()"><div class="fc-inn" id="fc-inn"><div class="fc-face"><div class="fc-lb">// tap to reveal</div><div class="fc-wd" id="fc-w">&#8212;</div><div class="fc-ht" id="fc-h"></div></div><div class="fc-face fc-back"><div class="fc-lb">// translation</div><div class="fc-tr" id="fc-tr">&#8212;</div><div class="fc-ex" id="fc-ex">&#8212;</div></div></div></div>
+    <div class="fc-btns"><button class="fc-btn fc-skip" onclick="next(false)">&#8617; Skip</button><button class="fc-btn fc-know" onclick="next(true)">&#10003; I know this</button></div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--mut);text-align:center">Rank #<span id="fc-rk">&#8212;</span> &middot; <span id="fc-ct">&#8212;</span></div>
+  </div>
+</div>
+<div class="panel" id="panel-stakes">
+  <div class="ptitle">Stakes &amp; <em>Streak</em></div>
+  <div class="psub">Real consequences create real commitment. Loss aversion is more powerful than willpower.</div>
+  <div class="streak-cal"><div class="s-title">30-Day Commitment</div><div class="s-sub">Click each day you studied. Don&#39;t break the chain.</div><div class="s-grid" id="s-grid"></div><div class="s-stats"><div class="s-stat"><span class="s-n" id="ss-s">0</span><div class="s-l">Day Streak</div></div><div class="s-stat"><span class="s-n" id="ss-t">0</span><div class="s-l">Days Done</div></div><div class="s-stat"><span class="s-n" id="ss-p">0%</span><div class="s-l">Completion</div></div></div></div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:.6rem">// Choose your stake</div>
+  <div class="commit-grid"><div class="commit" onclick="this.classList.toggle('on')"><span class="cm-e">&#128226;</span><div class="cm-n">Public Commitment</div><div class="cm-d">Post your 30-day goal publicly. Tell 5 friends. Peer pressure, weaponized.</div></div><div class="commit" onclick="this.classList.toggle('on')"><span class="cm-e">&#128184;</span><div class="cm-n">Anti-Charity Bet</div><div class="cm-d">$50&#8211;100 to a cause you hate if you miss your weekly target. Loss aversion at full power.</div></div><div class="commit" onclick="this.classList.toggle('on')"><span class="cm-e">&#129309;</span><div class="cm-n">Accountability Partner</div><div class="cm-d">Daily check-in. Miss a day = buy them lunch. No exceptions.</div></div><div class="commit" onclick="this.classList.toggle('on')"><span class="cm-e">&#9992;&#65039;</span><div class="cm-n">Book the Flight</div><div class="cm-d">Reserve a trip to Italy/Ukraine 3 months out. Real deadline, real urgency.</div></div></div>
+</div>
+
+<div class="panel" id="panel-diagnostic">
+  <div class="ptitle">12 <em>Diagnostic</em> Sentences</div>
+  <div class="psub">Tim Ferriss's deconstruction tool — these sentences expose the grammar structures that will trip you up. Translate them in your target language to instantly reveal the key patterns you need to master. Sentences update when you switch language in the sidebar.</div>
+  <div class="diag-grid" id="diag-grid"></div>
+</div>
+
+<div class="panel" id="panel-alphabet">
+  <div class="ptitle">Cyrillic <em>Alphabet</em></div>
+  <div class="psub">Ukrainian uses the Cyrillic script — 33 letters, each with a consistent sound. Learn these first and every word in the bank becomes readable within a week.</div>
+  <div class="alpha-intro">
+    🎯 <strong>Ferriss sequencing tip:</strong> Spend 3–4 days on Cyrillic before touching vocabulary. Once you crack the code, pronunciation becomes phonetic and consistent — unlike English. Most letters learned here will also help with Russian Cyrillic later.
+  </div>
+  <div class="alpha-section">// Vowels</div>
+  <div class="alpha-grid" id="alpha-vowels"></div>
+  <div class="alpha-section">// Consonants</div>
+  <div class="alpha-grid" id="alpha-consonants"></div>
+  <div class="alpha-section">// Special signs</div>
+  <div class="alpha-grid" id="alpha-special"></div>
+</div>
+
+</main>
+</div>
+<div class="ovl" id="ovl" onclick="closeOvl(event)"><div class="modal"><button class="m-close" onclick="closeModal()">&#10005;</button><div class="m-rk" id="m-rk">#1 &middot; verb</div><div class="m-nat" id="m-nat">&#8212;</div><div class="m-eng" id="m-eng">&#8212;</div><div class="m-sec"><div class="m-sl">// Example Sentence</div><div class="m-sc" id="m-ex">&#8212;</div><div class="m-ss" id="m-exen">&#8212;</div></div><div class="m-sec"><div class="m-sl">// Pronunciation</div><div class="m-pron" id="m-pron">&#8212;</div></div><div class="m-sec"><div class="m-sl">// AI Context &amp; Memory Hook</div><div id="m-hook"><div class="ai-load"><div class="dots"><span></span><span></span><span></span></div><span>Generating&#8230;</span></div></div></div><div class="m-acts"><button class="btn btn-s" onclick="closeModal()">Close</button><button class="btn btn-p" id="m-lb" onclick="toggleLearn()">Mark as Learned</button></div></div></div>
+
+<script>
+
+const UK=[
+[1,"бути","to be","verbs","Я щасливий.","I am happy.","BOO-tih","BE = бути — the most essential verb"],
+[2,"мати","to have","verbs","Я маю машину.","I have a car.","MAH-tih","MATTER of having = мати"],
+[3,"робити","to do/make","verbs","Що ти робиш?","What are you doing?","roh-BIH-tih","ROBOTics = doing work"],
+[4,"говорити","to speak/say","verbs","Говори повільніше.","Speak more slowly.","hoh-voh-RIH-tih","GOVor = speech in Slavic languages"],
+[5,"іти","to go","verbs","Я іду на роботу.","I'm going to work.","ih-TIH","IT = go (short and direct)"],
+[6,"бачити","to see","verbs","Я бачу тебе.","I see you.","BAH-chih-tih","WATCH = бачити"],
+[7,"знати","to know","verbs","Я знаю це.","I know this.","ZNAH-tih","KNOW = знати (gNOW)"],
+[8,"хотіти","to want","verbs","Я хочу каву.","I want a coffee.","khoh-TIH-tih","HOT desire = хотіти"],
+[9,"могти","to be able/can","verbs","Я можу допомогти.","I can help.","mohg-TIH","MIGHT = могти"],
+[10,"мусити","to must/have to","verbs","Я мушу вчитися.","I must study.","MOO-sih-tih","MUST = мусити"],
+[11,"приходити","to come","verbs","Приходь до нас.","Come to us.","prih-khoh-DIH-tih","PROCEED coming = приходити"],
+[12,"стояти","to stand/stay","verbs","Як справи?","How are you?","stoh-YAH-tih","STAY standing = стояти"],
+[13,"давати","to give","verbs","Дай мені номер.","Give me the number.","dah-VAH-tih","DONATE = давати"],
+[14,"брати","to take","verbs","Візьми каву.","Take a coffee.","BRAH-tih","GRAB = брати"],
+[15,"знаходити","to find","verbs","Я знайшов квартиру.","I found an apartment.","znah-KHOH-dih-tih","KNOW + find = знаходити"],
+[16,"думати","to think","verbs","Я думаю, що так.","I think so.","DOO-mah-tih","DOOMSDAY thinking = думати"],
+[17,"залишати","to leave/let","verbs","Залиш мене.","Leave me alone.","zah-lih-SHAH-tih","LEAVE behind = залишати"],
+[18,"називати","to call/name","verbs","Як тебе звати?","What's your name?","nah-zih-VAH-tih","NAME = називати"],
+[19,"розуміти","to understand","verbs","Я не розумію.","I don't understand.","roh-zoo-MIH-tih","REASON + mind = розуміти"],
+[20,"нести","to carry/bring","verbs","Я принесу вино.","I'll bring the wine.","neh-STIH","NEST carries things = нести"],
+[21,"запитати","to ask","verbs","Можна запитати?","Can I ask?","zah-pih-TAH-tih","ZAPitati = to ask"],
+[22,"тримати","to hold/keep","verbs","Тримай місце.","Hold the seat.","trih-MAH-tih","TRIM and hold = тримати"],
+[23,"виходити","to go out","verbs","Виходимо сьогодні?","Shall we go out tonight?","vih-KHOH-dih-tih","EXIT = виходити"],
+[24,"чути","to feel/hear","verbs","Я чую твій голос.","I hear your voice.","CHOO-tih","CLUE in sound = чути"],
+[25,"відкривати","to open","verbs","Відкрий вікно.","Open the window.","vid-krih-VAH-tih","DISCOVER = відкривати"],
+[26,"проходити","to pass/spend","verbs","Ми провели чудовий вечір.","We spent a wonderful evening.","proh-KHOH-dih-tih","PROCEED through = проходити"],
+[27,"працювати","to work","verbs","Я працюю вдома.","I work from home.","prah-tsyoo-VAH-tih","PRACTICE working = працювати"],
+[28,"повертатися","to return","verbs","Повертаюся зараз.","I'll be right back.","poh-ver-TAH-tih-sya","REVERT = повертатися"],
+[29,"жити","to live","verbs","Я живу у Києві.","I live in Kyiv.","zhih-TIH","LIVE = жити"],
+[30,"їсти","to eat","verbs","Ми їмо о восьмій.","We eat at eight.","yis-TIH","EAT = їсти"],
+[31,"дивитися","to watch/look","verbs","Дивлюся матч.","I'm watching the match.","dih-VIH-tih-sya","DIVINE gaze = дивитися"],
+[32,"програвати","to lose","verbs","Не хочу спізнитися.","I don't want to miss it.","proh-hrah-VAH-tih","PROGRAM to lose = програвати"],
+[33,"писати","to write","verbs","Напишу повідомлення.","I'll write a message.","pih-SAH-tih","PSALMS are written = писати"],
+[34,"читати","to read","verbs","Читаю щовечора.","I read every evening.","chih-TAH-tih","CHEAT sheet = читати"],
+[35,"платити","to pay","verbs","Цього разу я плачу.","I'll pay this time.","plah-TIH-tih","PLATinum = платити"],
+[36,"купувати","to buy","verbs","Купую фрукти.","I buy fruit.","koo-poo-VAH-tih","COUPon = купувати"],
+[37,"чекати","to wait","verbs","Зачекай хвилину.","Wait a minute.","cheh-KAH-tih","CHECK waiting = чекати"],
+[38,"допомагати","to help","verbs","Можеш допомогти?","Can you help me?","doh-poh-mah-HAH-tih","HELP = допомагати"],
+[39,"відповідати","to reply","verbs","Він не відповів.","He didn't reply.","vid-poh-vih-DAH-tih","RESPOND = відповідати"],
+[40,"починати","to begin","verbs","Коли починаємо?","When do we start?","poh-chih-NAH-tih","COMMENCE = починати"],
+[41,"закінчувати","to finish","verbs","Я закінчив!","I'm done!","zah-KIN-choo-vah-tih","FINISH = закінчувати"],
+[42,"грати","to play","verbs","Діти грають надворі.","Children play outside.","HRAH-tih","GRADE of play = грати"],
+[43,"приїжджати","to arrive","verbs","О котрій приїжджаєш?","What time do you arrive?","prih-yizh-DZHA-tih","ARRIVE = приїжджати"],
+[44,"від'їжджати","to depart","verbs","Від'їжджаю завтра.","I leave tomorrow.","vid-yizh-DZHA-tih","DEPART = від'їжджати"],
+[45,"змінювати","to change","verbs","Треба пересісти.","I need to change trains.","zmih-NYOO-vah-tih","CHANGE = змінювати"],
+[46,"ставати","to become","verbs","Хоче стати лікарем.","He wants to become a doctor.","stah-VAH-tih","STAND and become = ставати"],
+[47,"отримувати","to receive","verbs","Отримав твій email.","I received your email.","oht-RIH-moo-vah-tih","OBTAIN = отримувати"],
+[48,"вчитися","to study/learn","verbs","Вчуся три години.","I study three hours a day.","vchih-TIH-sya","TEACH yourself = вчитися"],
+[49,"спати","to sleep","verbs","Сплю вісім годин.","I sleep eight hours.","SPAH-tih","SLEEP = спати"],
+[50,"вставати","to get up","verbs","Встаю о сьомій.","I get up at seven.","vstah-VAH-tih","STAND up = вставати"],
+[51,"пам'ятати","to remember","verbs","Не пам'ятаю імені.","I don't remember the name.","pahm-yah-TAH-tih","MEMORY = пам'ятати"],
+[52,"забувати","to forget","verbs","Забув парасолю.","I forgot my umbrella.","zah-boo-VAH-tih","FORGET = забувати"],
+[53,"шукати","to look for","verbs","Шукаю ключі.","I'm looking for my keys.","shoo-KAH-tih","SEEK = шукати"],
+[54,"вирішувати","to decide","verbs","Ти вже вирішив?","Have you decided yet?","vih-RIH-shoo-vah-tih","RESOLVE = вирішувати"],
+[55,"любити","to love/like","verbs","Люблю піцу.","I love pizza.","lyoo-BIH-tih","LOVE = любити"],
+[56,"пояснювати","to explain","verbs","Поясниш мені?","Can you explain it?","poh-yas-NYOO-vah-tih","PLAIN explanation = пояснювати"],
+[57,"вірити","to believe","verbs","Ти віриш?","Do you believe it?","VIH-rih-tih","VERIFY = вірити"],
+[58,"сподіватися","to hope","verbs","Сподіваюся, що так.","I hope so.","spoh-DIH-vah-tih-sya","HOPE = сподіватися"],
+[59,"сміятися","to laugh","verbs","Ми часто сміємося.","We laugh often.","smih-YAH-tih-sya","SMILE + laugh = сміятися"],
+[60,"пити","to drink","verbs","П'ю забагато кави.","I drink too much coffee.","PIH-tih","PINT to drink = пити"],
+[61,"готувати","to cook","verbs","Готую щовечора.","I cook every evening.","hoh-too-VAH-tih","GOT food = готувати"],
+[62,"ходити","to walk","verbs","Ходімо разом.","Let's walk together.","KHOH-dih-tih","HIKE = ходити"],
+[63,"танцювати","to dance","verbs","Вмієш танцювати?","Can you dance?","tahn-tsyoo-VAH-tih","TANGO = танцювати"],
+[64,"співати","to sing","verbs","Вона чудово співає.","She sings beautifully.","spih-VAH-tih","SOPRANO = співати"],
+[65,"подорожувати","to travel","verbs","Люблю подорожувати.","I love to travel.","poh-doh-roh-ZHOO-vah-tih","JOURNEY = подорожувати"],
+[66,"плавати","to swim","verbs","Плаваю в басейні.","I swim in the pool.","PLAH-vah-tih","FLOAT = плавати"],
+[67,"водити","to drive","verbs","Вожу щодня.","I drive every day.","VOH-dih-tih","DRIVE = водити"],
+[68,"бронювати","to book/reserve","verbs","Забронював столик.","I booked a table.","broh-nyoo-VAH-tih","BOOK = бронювати"],
+[69,"дякувати","to thank","verbs","Дякую тебе.","I thank you.","DYAH-koo-vah-tih","THANK = дякувати"],
+[70,"організовувати","to organize","verbs","Організовую вечірку.","I'm organizing a party.","or-hah-nih-ZOH-voo-vah-tih","ORGANIZE = організовувати"],
+[71,"чоловік","man","nouns","Той чоловік мій батько.","That man is my father.","choh-loh-VIK","MAN = чоловік"],
+[72,"жінка","woman","nouns","Жінка посміхається.","The woman smiles.","ZHEEN-kah","WOMAN = жінка"],
+[73,"дитина","child","nouns","Дитина грає.","The child plays.","dih-TIH-nah","TINY child = дитина"],
+[74,"хлопець","boy/guy","nouns","Хлопець вчиться.","The boy studies.","KHLOH-pehts","LOPE around = хлопець"],
+[75,"дівчина","girl","nouns","Дівчина співає.","The girl sings.","DIV-chih-nah","DIVINE girl = дівчина"],
+[76,"друг","friend (m)","nouns","Він мій найкращий друг.","He's my best friend.","droog","DRUG = друг (false friend!)"],
+[77,"подруга","friend (f)","nouns","Іду з подругою.","I'm going with my friend.","poh-DROO-hah","GOOD friend = подруга"],
+[78,"сім'я","family","nouns","Моя сім'я велика.","My family is big.","SIM-yah","FAMILY = сім'я"],
+[79,"батько","father","nouns","Мій батько добре готує.","My father cooks well.","BAHT-koh","FATHER = батько"],
+[80,"мати","mother","nouns","Моя мати — лікар.","My mother is a doctor.","MAH-tih","MATRIARCH = мати"],
+[81,"брат","brother","nouns","Мій брат молодший.","My brother is younger.","braht","BROTHER = брат"],
+[82,"сестра","sister","nouns","У мене дві сестри.","I have two sisters.","sehs-TRAH","SISTER = сестра"],
+[83,"чоловік","husband","nouns","Мій чоловік у Римі.","My husband is in Rome.","choh-loh-VIK","MAN/HUSBAND = чоловік"],
+[84,"дружина","wife","nouns","Дружина працює в банку.","My wife works at a bank.","droo-ZHIH-nah","DRUGina = дружина (wife)"],
+[85,"дідусь","grandfather","nouns","Дідусь розповідає казки.","Grandfather tells stories.","DIH-doos","GRANDPA = дідусь"],
+[86,"бабуся","grandmother","nouns","Бабуся робить вареники.","Grandmother makes dumplings.","bah-BOO-syah","BABUSHKA = бабуся!"],
+[87,"будинок","house/home","nouns","Мій будинок у центрі.","My home is downtown.","boo-DIH-nok","BUILDING = будинок"],
+[88,"місто","city","nouns","Київ — красиве місто.","Kyiv is a beautiful city.","MIS-toh","MIST over the city = місто"],
+[89,"вулиця","street/road","nouns","Вулиця переповнена.","The street is crowded.","VOO-lih-tsya","ALLEY = вулиця"],
+[90,"магазин","shop/store","nouns","Магазин зачинений.","The shop is closed.","mah-hah-ZIN","MAGAZINE/STORE = магазин"],
+[91,"ресторан","restaurant","nouns","Ходімо до ресторану.","Let's go to the restaurant.","rehs-toh-RAHN","RESTAURANT = ресторан"],
+[92,"школа","school","nouns","Школа починається у вересні.","School starts in September.","SHKOH-lah","SCHOOL = школa"],
+[93,"університет","university","nouns","Вчуся в університеті.","I study at university.","oo-nih-ver-sih-TET","UNIVERSITY = університет"],
+[94,"офіс","office","nouns","Я працюю в офісі.","I work in an office.","OH-fis","OFFICE = офіс"],
+[95,"лікарня","hospital","nouns","Лікарня поруч.","The hospital is nearby.","LIH-kar-nyah","LIKARIA = hospital"],
+[96,"станція","station","nouns","Станція в центрі.","The station is downtown.","STAHN-tsih-yah","STATION = станція"],
+[97,"аеропорт","airport","nouns","Аеропорт за містом.","The airport is outside the city.","ah-eh-roh-PORT","AIRPORT = аеропорт"],
+[98,"потяг","train","nouns","Потяг запізнюється.","The train is late.","POH-tyahg","POTyag = train in Ukrainian"],
+[99,"автомобіль","car","nouns","Моя машина червона.","My car is red.","ahv-toh-moh-BIL","AUTOMOBILE = автомобіль"],
+[100,"робота","work/job","nouns","Шукаю нову роботу.","I'm looking for a new job.","roh-BOH-tah","ROBOT works = робота"],
+[101,"час","time","nouns","Немає часу сьогодні.","I don't have time today.","chahs","CHASE the time = час"],
+[102,"день","day","nouns","Добрий день!","Good day!","dehn","DAY = день"],
+[103,"ніч","night","nouns","Добраніч!","Good night!","NITCH","NIGHT = ніч"],
+[104,"тиждень","week","nouns","Наступного тижня.","Next week.","TIZH-dehn","WEEK = тиждень"],
+[105,"місяць","month","nouns","Щомісяця плачу оренду.","Every month I pay rent.","MIS-yahts","MOON/MONTH = місяць"],
+[106,"рік","year","nouns","Цього року їду в Україну.","This year I'm going to Ukraine.","rik","YEAR = рік"],
+[107,"вода","water","nouns","Склянку води, будь ласка.","A glass of water, please.","VOH-dah","VODKA comes from вода!"],
+[108,"вино","wine","nouns","Склянку червоного вина.","A glass of red wine.","VIH-noh","VINE = вино"],
+[109,"кава","coffee","nouns","Каву з молоком, будь ласка.","A coffee with milk, please.","KAH-vah","CAFe = кава"],
+[110,"хліб","bread","nouns","Хліб щойно з печі.","The bread is freshly baked.","khlib","BREAD = хліб"],
+[111,"м'ясо","meat","nouns","Це м'ясо чудове.","This meat is excellent.","MYAH-soh","MEATY = м'ясо"],
+[112,"риба","fish","nouns","Риба свіжа сьогодні.","The fish is fresh today.","RIH-bah","RIBA = fish (Slavic root)"],
+[113,"фрукти","fruit","nouns","Їм багато фруктів.","I eat a lot of fruit.","FROOK-tih","FRUIT = фрукти"],
+[114,"обід","lunch","nouns","Пообідаємо разом?","Shall we have lunch together?","oh-BID","MIDDAY meal = обід"],
+[115,"вечеря","dinner","nouns","Вечеря о восьмій.","Dinner is at eight.","veh-CHEH-ryah","EVENing meal = вечеря"],
+[116,"сніданок","breakfast","nouns","Снідаю в кафе.","I have breakfast at the café.","snih-DAH-nok","SNOW morning = сніданок"],
+[117,"морозиво","ice cream","nouns","Морозиво з полуницею.","Strawberry ice cream.","moh-ROH-zih-voh","FROST = морозиво (frozen!)"],
+[118,"сонце","sun","nouns","Сонце світить.","The sun shines.","SON-tse","SUN = сонце"],
+[119,"місяць","moon","nouns","Повний місяць чудовий.","The full moon is beautiful.","MIS-yahts","MOON = місяць (same as month!)"],
+[120,"море","sea","nouns","Їду на море влітку.","I go to the sea in summer.","MOH-reh","MARE = sea (Latin root)"],
+[121,"гора","mountain","nouns","Їду в гори кататися.","I go to the mountains to ski.","HOH-rah","GORE = gory mountain"],
+[122,"кіт","cat","nouns","Мій кіт спить на дивані.","My cat sleeps on the sofa.","kit","KITten = кіт"],
+[123,"собака","dog","nouns","Собака голосно гавкає.","The dog barks loudly.","soh-BAH-kah","BARK! = собака"],
+[124,"голова","head","nouns","Болить голова.","I have a headache.","hoh-loh-VAH","DOME of the head = голова"],
+[125,"очі","eyes","nouns","У неї блакитні очі.","She has blue eyes.","OH-chih","OCULIST = очі"],
+[126,"рука","hand/arm","nouns","Дай мені руку.","Give me your hand.","ROO-kah","REACH with рука"],
+[127,"серце","heart","nouns","Серце б'ється швидко.","My heart beats fast.","SER-tse","SERVant of the heart = серце"],
+[128,"голос","voice","nouns","У неї гарний голос.","She has a beautiful voice.","HOH-los","HOWL = голос"],
+[129,"ім'я","name","nouns","Як тебе звати?","What is your name?","IM-yah","IMage of a name = ім'я"],
+[130,"книга","book","nouns","Читаю чудову книгу.","I'm reading a wonderful book.","KNIH-hah","KNOWLEDGE = книга"],
+[131,"телефон","phone","nouns","Телефон розряджений.","My phone is dead.","teh-leh-FON","TELEPHONE = телефон"],
+[132,"гроші","money","nouns","Не вистачає грошей.","I don't have enough money.","HROH-shih","GROSS amount = гроші"],
+[133,"машина","car","nouns","Моя машина червона.","My car is red.","mah-SHIH-nah","MACHINE = машина"],
+[134,"автобус","bus","nouns","Щодня їжджу автобусом.","I take the bus every day.","AHV-toh-boos","AUTO + BUS = автобус"],
+[135,"літак","airplane","nouns","Літак запізнюється.","The plane is late.","LIH-tahk","FLY = літак (to fly = літати)"],
+[136,"великий","big/great","adj","Маю чудову ідею.","I have a great idea.","veh-LIH-kiy","VERY BIG = великий"],
+[137,"маленький","small","adj","Невелика проблема.","I have a small problem.","mah-LEN-kiy","SMALL = маленький"],
+[138,"гарний","good/nice","adj","Їжа смачна.","The food is good.","HAHR-niy","GORGEOUS = гарний"],
+[139,"поганий","bad","adj","Яка погана погода!","What bad weather!","poh-HAH-niy","PAGAN = bad (folk etymology)"],
+[140,"красивий","beautiful","adj","Яке красиве місце!","What a beautiful place!","krah-SIH-viy","GRACE + beauty = красивий"],
+[141,"новий","new","adj","Нова квартира.","I have a new apartment.","NOH-viy","NOVEL = новий"],
+[142,"старий","old","adj","Стара традиція.","It's an old tradition.","STAH-riy","STAR old and ancient"],
+[143,"молодий","young","adj","Вона дуже молода.","She's very young.","moh-loh-DIY","YOUNG = молодий"],
+[144,"високий","tall/high","adj","Він дуже високий.","He's very tall.","vih-SOH-kiy","HIGH = високий"],
+[145,"низький","short/low","adj","Музика занадто тиха.","The music is too low.","NIZ-kiy","LOW = низький"],
+[146,"довгий","long","adj","Довга розповідь.","It's a long story.","DOHV-hiy","LONG = довгий"],
+[147,"гарячий","hot/warm","adj","Вода гаряча.","The water is hot.","hah-RYAH-chiy","HOT = гарячий"],
+[148,"холодний","cold","adj","Сьогодні дуже холодно.","It's very cold today.","khoh-LOHD-niy","COLD = холодний"],
+[149,"швидкий","fast","adj","Потяг швидкий.","The train is fast.","SHVID-kiy","SWIFT = швидкий"],
+[150,"легкий","easy/light","adj","Це легше, ніж раніше.","It's easier than before.","LEHK-kiy","LIGHT = легкий"],
+[151,"важкий","difficult/heavy","adj","Українська важка.","Ukrainian is difficult.","VAHZH-kiy","HEAVY = важкий"],
+[152,"важливий","important","adj","Дуже важливо.","It's very important.","vahzh-LIH-viy","IMPORTANT = важливий"],
+[153,"цікавий","interesting","adj","Цікава книга.","An interesting book.","tsih-KAH-viy","CURIOUS = цікавий"],
+[154,"втомлений","tired","adj","Я дуже втомився.","I'm exhausted.","vtohm-LEH-niy","TIRED = втомлений"],
+[155,"задоволений","happy/pleased","adj","Радий тебе бачити.","I'm happy to see you.","zah-doh-VOH-leh-niy","SATISFIED = задоволений"],
+[156,"сумний","sad","adj","Сумна розповідь.","It's a sad story.","SOOM-niy","SOMBER = сумний"],
+[157,"вільний","free/available","adj","Ти вільний сьогодні?","Are you free tonight?","VIL-niy","WILL = вільний (freedom)"],
+[158,"готовий","ready","adj","Я готовий!","I'm ready!","hoh-TOH-viy","GOOD TO GO = готовий"],
+[159,"впевнений","sure/confident","adj","Ти впевнений?","Are you sure?","VPEHV-neh-niy","CONFIDENT = впевнений"],
+[160,"чистий","clean","adj","Будинок чистий.","The house is clean.","CHIHS-tiy","CHASTE = чистий"],
+[161,"і","and","connectors","Хліб і масло.","Bread and butter.","ee","AND = і (simplest word!)"],
+[162,"або","or","connectors","Кава або чай?","Coffee or tea?","AH-boh","OR = або"],
+[163,"але","but","connectors","Гарне, але дороге.","It's nice but expensive.","AH-leh","BUT = але"],
+[164,"проте","however","connectors","Подобається, проте дорого.","I like it, however it's expensive.","PROH-teh","PROTEST = proте"],
+[165,"тому","so/therefore","connectors","Я втомлений, тому залишуся.","I'm tired, so I'll stay.","TOH-moo","TOTAL conclusion = тому"],
+[166,"тому що","because","connectors","Чому ти тут?","Why are you here?","TOH-moo shchoh","BECAUSE = тому що"],
+[167,"коли","when","connectors","Коли приїдеш?","When do you arrive?","KOH-lih","WHEN = коли"],
+[168,"де","where","connectors","Де ти?","Where are you?","deh","WHERE = де"],
+[169,"як","how/like","connectors","Як справи?","How are you?","yahk","HOW = як"],
+[170,"що","what/that","connectors","Що хочеш?","What do you want?","shchoh","WHAT = що"],
+[171,"хто","who","connectors","Хто ти?","Who are you?","khtoh","WHO = хто"],
+[172,"який","which/what","connectors","Думаю, що пізно.","I think that it's late.","YAH-kiy","WHICH = який"],
+[173,"якщо","if","connectors","Якщо хочеш, прийду.","If you want, I'll come.","YAHK-shchoh","IF = якщо"],
+[174,"також","also/too","connectors","Я також іду.","I'm coming too.","TAH-kohzh","ALSO = також"],
+[175,"завжди","always","connectors","Він завжди спізнюється.","He's always late.","ZAHV-zhdy","ALWAYS = завжди"],
+[176,"ніколи","never","connectors","Ніколи так не роблю.","I never do it.","nih-KOH-lih","NEVER = ніколи"],
+[177,"часто","often","connectors","Часто ходжу туди.","I go there often.","CHAHS-toh","OFTEN = часто"],
+[178,"зараз","now","connectors","Іди зараз.","Come now.","ZAH-rahs","NOW = зараз"],
+[179,"потім","then/afterwards","connectors","Спочатку їм, потім виходжу.","First I eat, then I go out.","POH-tim","THEN = потім"],
+[180,"спочатку","before/first","connectors","Спочатку поспи.","Before sleeping.","spoh-CHAHT-koo","FIRST = спочатку"],
+[181,"після","after/later","connectors","Після обіду.","After lunch.","PIHS-lyah","AFTER = після"],
+[182,"разом","together","connectors","Ходімо разом.","Let's go together.","RAH-zohm","TOGETHER = разом"],
+[183,"можливо","maybe","connectors","Можливо, прийду.","Maybe I'll come.","mohzh-LIH-voh","POSSIBLE = можливо"],
+[184,"дуже","a lot/very","connectors","Дуже дякую!","Thank you very much!","DOO-zheh","VERY = дуже"],
+[185,"трохи","a little","connectors","Трохи солі.","A little salt.","TROH-khih","TRICKLE = трохи"],
+[186,"занадто","too much","connectors","Занадто жарко.","It's too hot.","zah-NAHD-toh","TOO MUCH = занадто"],
+[187,"майже","almost","connectors","Майже готовий.","I'm almost ready.","MYHY-zheh","ALMOST = майже"],
+[188,"тільки","only/just","connectors","Тільки хвилину.","Just a minute.","TIL-kih","ONLY = тільки"],
+[189,"все","all/everything","connectors","З'їв все.","I ate everything.","vseh","ALL = все"],
+[190,"кожен","every/each","connectors","Кожного дня.","Every day.","KOH-zhehn","EACH = кожен"],
+[191,"нічого","nothing","connectors","Нічого не сказав.","I said nothing.","NIH-choh-hoh","NOTHING = нічого"],
+[192,"щось","something","connectors","Хочу щось їсти.","I want something to eat.","shchohs","SOMETHING = щось"],
+[193,"ну","so/well","connectors","Ну, ходімо?","So, shall we go?","noo","WELL THEN = ну"],
+[194,"вже","already","connectors","Я вже бачив це.","I've already seen it.","vzheh","ALREADY = вже"],
+[195,"ще","still/yet","connectors","Ще не готово.","It's not ready yet.","shcheh","STILL = ще"],
+[196,"справді","really/truly","connectors","Справді?","Really?","SPRAHV-dih","TRULY = справді"],
+[197,"все одно","anyway","connectors","Все одно, побачимось.","Anyway, we'll see each other.","vseh oh-DNOH","ALL THE SAME = все одно"],
+[198,"замість","instead","connectors","Замість бігти, йду.","Instead of running, I walk.","ZAH-mist","INSTEAD = замість"],
+[199,"на жаль","unfortunately","connectors","На жаль, не можу.","Unfortunately I can't.","nah zhahl","ALAS = на жаль"],
+[200,"принаймні","at least","connectors","Принаймні кава.","At least a coffee.","prih-NAYM-nih","AT LEAST = принаймні"],
+[201,"будь ласка","please","phrases","Каву, будь ласка.","A coffee, please.","bood' LAHS-kah","BE KIND = будь ласка"],
+[202,"дякую","thank you","phrases","Велике дякую!","Thank you so much!","DYAH-koo-yoo","THANK YOU = дякую"],
+[203,"будь ласка","you're welcome","phrases","Дякую! — Будь ласка!","Thanks! — You're welcome!","bood' LAHS-kah","PLEASE/WELCOME = будь ласка"],
+[204,"вибачте","sorry/excuse me","phrases","Вибачте, не побачив вас.","Sorry, I didn't see you.","vih-BAHCH-teh","FORGIVE = вибачте"],
+[205,"мені шкода","I'm sorry","phrases","Мені дуже шкода.","I'm very sorry.","meh-NIH SHKOH-dah","IT HURTS ME = мені шкода"],
+[206,"добрий ранок","good morning","phrases","Добрий ранок усім!","Good morning everyone!","DOH-briy RAH-nok","GOOD MORNING = добрий ранок"],
+[207,"добрий вечір","good evening","phrases","Добрий вечір, як справи?","Good evening, how are you?","DOH-briy VEH-chir","GOOD EVENING = добрий вечір"],
+[208,"привіт","hi","phrases","Привіт! Як справи?","Hi! How are you?","prih-VIT","GREET = привіт"],
+[209,"до побачення","goodbye","phrases","До побачення!","Goodbye!","doh poh-BAH-cheh-nyah","UNTIL WE SEE = до побачення"],
+[210,"як це сказати","how do you say","phrases","Як це сказати по-українськи?","How do you say this in Ukrainian?","yahk tseh skah-ZAH-tih","HOW TO SAY = як це сказати"],
+[211,"я не розумію","I don't understand","phrases","Я не розумію, повторіть?","I don't understand, repeat?","yah neh roh-zoo-MIH-yoo","I DON'T UNDERSTAND"],
+[212,"скільки коштує","how much","phrases","Скільки це коштує?","How much does this cost?","SKIL-kih KOSH-too-yeh","HOW MUCH = скільки коштує"],
+[213,"мене звати","my name is","phrases","Мене звати Олексій.","My name is Oleksiy.","meh-NEH ZVAH-tih","I AM CALLED = мене звати"],
+[214,"я голодний","I'm hungry","phrases","Я страшенно голодний!","I'm starving!","yah hoh-LOHD-niy","I AM HUNGRY = я голодний"],
+[215,"мені подобається","I like","phrases","Мені дуже подобається!","I like it very much!","meh-NIH poh-DOH-bah-yeht-sya","IT PLEASES ME = мені подобається"],
+[216,"де знаходиться","where is","phrases","Де знаходиться станція?","Where is the station?","deh znah-KHOH-dih-tsya","WHERE IS = де знаходиться"],
+[217,"я добре","I'm fine","phrases","Я добре, дякую!","I'm fine, thanks!","yah DOH-breh","I AM FINE = я добре"],
+[218,"котра година","what time is it","phrases","Котра зараз година?","What time is it?","KOH-trah ZAH-rahs hoh-DIH-nah","WHAT HOUR = котра година"],
+[219,"на щастя","thank goodness","phrases","На щастя, ти приїхав!","Thank goodness you arrived!","nah SHCHAHS-tyah","TO HAPPINESS = на щастя"],
+[220,"удачі","good luck","phrases","Удачі!","Good luck!","oo-DAH-chih","LUCK = удачі"],
+[221,"я люблю тебе","I love you","phrases","Я люблю тебе.","I love you.","yah lyoo-BLYOO teh-BEH","I LOVE YOU = я люблю тебе"],
+[222,"я сумую за тобою","I miss you","phrases","Я дуже сумую за тобою.","I miss you so much.","yah soo-MOO-yoo zah toh-BOH-yoo","I MISS YOU = я сумую за тобою"],
+[223,"як гарно","how beautiful","phrases","Як гарно!","How beautiful!","yahk HAHR-noh","HOW BEAUTIFUL = як гарно"],
+[224,"шкода","what a pity","phrases","Шкода, що не можеш прийти!","What a pity you can't come!","SHKOH-dah","PITY = шкода"],
+[225,"якби ж то","I wish","phrases","Якби ж то я міг прийти!","I wish I could come!","yahk-BIH zh toh","I WISH = якби ж то"],
+[226,"ласкаво просимо","welcome","phrases","Ласкаво просимо до України!","Welcome to Ukraine!","lahs-KAH-voh PROH-sih-moh","WELCOME = ласкаво просимо"],
+[227,"щасти","good luck (casual)","phrases","Щасти!","Good luck!","shchahs-TIH","HAPPINESS to you = щасти"],
+[228,"на здоров'я","cheers/bless you","phrases","На здоров'я!","Cheers! / Bless you!","nah zdoh-ROH-vyah","TO HEALTH = на здоров'я"],
+[229,"смачного","enjoy your meal","phrases","Смачного!","Enjoy your meal!","smahch-NOH-hoh","TASTY = смачного"],
+[230,"не страшно","it doesn't matter","phrases","Не страшно!","It doesn't matter!","neh STRAHSH-noh","NOT SCARY = не страшно"],
+[231,"червоний","red","adj","Червоне вино.","The red wine.","chehr-VOH-niy","VERMILLION = червоний"],
+[232,"синій","blue","adj","Небо синє.","The sky is blue.","SIH-niy","CYAN = синій"],
+[233,"зелений","green","adj","Трава зелена.","The grass is green.","zeh-LEH-niy","GREEN = зелений"],
+[234,"жовтий","yellow","adj","Лимон жовтий.","The lemon is yellow.","ZHOHV-tiy","YELLOW gold = жовтий"],
+[235,"білий","white","adj","Сніг білий.","The snow is white.","BIH-liy","BLEACH = білий"],
+[236,"чорний","black","adj","Чорна кава.","Black coffee.","CHOHR-niy","CHARCOAL = чорний"],
+[237,"помаранчевий","orange","adj","Апельсин помаранчевий.","The orange is orange.","poh-mah-RAHN-cheh-viy","ORANGE = помаранчевий"],
+[238,"фіолетовий","purple","adj","Мені подобається фіолетовий.","I like purple.","fih-oh-LEH-toh-viy","VIOLET = фіолетовий"],
+[239,"сірий","grey","adj","Сіре небо.","A grey sky.","SIH-riy","GREY = сірий"],
+[240,"коричневий","brown","adj","Каштанове волосся.","Brown hair.","koh-RICH-neh-viy","CORK brown = коричневий"],
+[241,"сьогодні","today","connectors","Що робиш сьогодні?","What are you doing today?","syoh-HOD-nih","TODAY = сьогодні"],
+[242,"вчора","yesterday","connectors","Вчора ходив до кіно.","Yesterday I went to the cinema.","VCHOH-rah","YESTERDAY = вчора"],
+[243,"завтра","tomorrow","connectors","Побачимось завтра.","See you tomorrow.","ZAHV-trah","TOMORROW = завтра"],
+[244,"понеділок","Monday","nouns","У понеділок я працюю.","On Monday I work.","poh-neh-DIH-lok","MONDAY = понеділок"],
+[245,"вівторок","Tuesday","nouns","У вівторок нарада.","Tuesday I have a meeting.","VIV-toh-rok","TUESDAY = вівторок"],
+[246,"середа","Wednesday","nouns","У середу ідемо до кіно.","Wednesday we go to the cinema.","seh-reh-DAH","MIDDLE of week = середа"],
+[247,"четвер","Thursday","nouns","У четвер виходимо.","Thursday we go out.","CHEHT-ver","THURSDAY = четвер"],
+[248,"п'ятниця","Friday","nouns","У п'ятницю я щасливий.","On Friday I'm happy.","PYAHT-nih-tsya","FIVE-th day = п'ятниця"],
+[249,"субота","Saturday","nouns","У суботу відпочиваю.","On Saturday I rest.","soo-BOH-tah","SABBATH = субота"],
+[250,"неділя","Sunday","nouns","У неділю іду до церкви.","On Sunday I go to church.","neh-DIH-lyah","NO WORK = неділя"],
+[251,"лікар","doctor","nouns","Лікар хороший.","The doctor is good.","LIH-kar","LIQUOR heals? No — лікар"],
+[252,"адвокат","lawyer","nouns","Дзвоню своєму адвокату.","I call my lawyer.","ahd-voh-KAHT","ADVOCATE = адвокат"],
+[253,"інженер","engineer","nouns","Я інженер.","I am an engineer.","in-zheh-NER","ENGINEER = інженер"],
+[254,"вчитель","teacher","nouns","Вчитель суворий.","The teacher is strict.","VCHIH-tehl","TEACHER = вчитель (teaches)"],
+[255,"студент","student","nouns","Я студент.","I am a student.","stoo-DEHNT","STUDENT = студент"],
+[256,"ідея","idea","nouns","Маю гарну ідею.","I have a good idea.","ih-DEH-yah","IDEA = ідея"],
+[257,"проблема","problem","nouns","Маємо проблему.","We have a problem.","proh-BLEH-mah","PROBLEM = проблема"],
+[258,"рішення","solution","nouns","Знайти рішення.","To find a solution.","RIH-shen-nyah","RESOLUTION = рішення"],
+[259,"питання","question","nouns","Маю питання.","I have a question.","pih-TAH-nyah","PETITION = питання"],
+[260,"відповідь","answer","nouns","Не знаю відповіді.","I don't know the answer.","VID-poh-vid","RESPONSE = відповідь"],
+[261,"історія","history/story","nouns","Розкажи казку.","Tell me a story.","ihs-TOH-rih-yah","HISTORY = історія"],
+[262,"новини","news","nouns","Гарні новини!","Good news!","noh-VIH-nih","NOVEL news = новини"],
+[263,"правда","truth","nouns","Скажи мені правду.","Tell me the truth.","PRAHV-dah","PRAVDA = truth (famous paper)"],
+[264,"свобода","freedom","nouns","Свобода фундаментальна.","Freedom is fundamental.","svoh-BOH-dah","SVOBODA = freedom"],
+[265,"мир","peace","nouns","Світ хоче миру.","The world wants peace.","mihr","PEACE = мир"],
+[266,"кохання","love","nouns","Кохання сліпе.","Love is blind.","koh-KHAN-nyah","LOVE = кохання"],
+[267,"щастя","happiness","nouns","Шукає щастя.","She seeks happiness.","SHCHAHS-tyah","HAPPINESS = щастя"],
+[268,"страх","fear","nouns","Боюся темряви.","I'm afraid of the dark.","strakh","FEAR = страх"],
+[269,"сміливість","courage","nouns","Потрібна сміливість.","It takes courage.","SMIH-lih-vist","BRAVERY = сміливість"],
+[270,"довіра","trust","nouns","Я довіряю тобі.","I trust you.","doh-VIH-rah","TRUST = довіра"],
+[271,"інтернет","internet","nouns","Користуюся інтернетом щодня.","I use the internet every day.","in-ter-NET","INTERNET = інтернет"],
+[272,"комп'ютер","computer","nouns","Працюю за комп'ютером.","I work on the computer.","kohm-PYOO-ter","COMPUTER = комп'ютер"],
+[273,"повідомлення","message","nouns","Надішлю повідомлення.","I'll send you a message.","poh-vih-dohm-LEN-nyah","MESSAGE = повідомлення"],
+[274,"додаток","app","nouns","Завантажую додаток.","I download the app.","doh-DAH-tok","ADD-on = додаток"],
+[275,"вайфай","wifi","nouns","Тут є вайфай?","Is there wifi here?","VAY-fay","WIFI = вайфай"],
+[276,"футбол","football/soccer","nouns","Дивлюся футбол.","I watch football.","foot-BOHL","FOOTBALL = футбол"],
+[277,"тренажерний зал","gym","nouns","Ходжу до тренажерного залу.","I go to the gym.","treh-nah-ZHEHR-niy zahl","TRAINING HALL = тренажерний зал"],
+[278,"подорож","trip/journey","nouns","Була чудова подорож.","It was a great trip.","poh-DOH-rozh","JOURNEY = подорож"],
+[279,"відпустка","vacation","nouns","Іду у відпустку в липні.","I go on holiday in July.","vid-POOS-tkah","TIME OFF = відпустка"],
+[280,"музика","music","nouns","Люблю українську музику.","I love Ukrainian music.","MOO-zih-kah","MUSIC = музика"],
+[281,"фільм","film/movie","nouns","Переглянув гарний фільм.","I saw a good film.","film","FILM = фільм"],
+[282,"матч","match/game","nouns","Дивлюся матч.","I watch the match.","mahch","MATCH = матч"],
+[283,"світ","world","nouns","Світ великий.","The world is big.","svit","WORLD = світ"],
+[284,"країна","country","nouns","Моя країна мала.","My country is small.","krah-YIH-nah","LAND = країна"],
+[285,"уряд","government","nouns","Уряд України.","The government of Ukraine.","OO-ryahd","ORDER of government = уряд"],
+[286,"мова","language","nouns","Я вивчаю мову.","I'm learning the language.","MOH-vah","SPEECH = мова"],
+[287,"ціль","goal/objective","nouns","Моя ціль зрозуміла.","My goal is clear.","tsil","GOAL = ціль"],
+[288,"успіх","success","nouns","Він мав великий успіх.","He had great success.","OOS-pikh","SUCCESS = успіх"],
+[289,"помилка","error/mistake","nouns","Я зробив помилку.","I made a mistake.","poh-MIHL-kah","ERROR = помилка"],
+[290,"досвід","experience","nouns","Маю великий досвід.","I have a lot of experience.","DOS-vid","EXPERIENCE = досвід"],
+[291,"якість","quality","nouns","Висока якість.","High quality.","YAH-kist","QUALITY = якість"],
+[292,"момент","moment","nouns","Важкий момент.","A difficult moment.","moh-MENT","MOMENT = момент"],
+[293,"можливість","possibility","nouns","Є можливість.","There's a possibility.","mohzh-LIH-vist","POSSIBILITY = можливість"],
+[294,"зміна","change","nouns","Велика зміна.","A big change.","ZMIH-nah","CHANGE = зміна"],
+[295,"система","system","nouns","Система працює.","The system works.","sihs-TEH-mah","SYSTEM = система"],
+[296,"метод","method","nouns","Метод DiSSS.","The DiSSS method.","MEH-tohd","METHOD = метод"],
+[297,"результат","result","nouns","Відмінний результат.","An excellent result.","reh-zool-TAHT","RESULT = результат"],
+[298,"план","plan","nouns","План дій.","The action plan.","plahn","PLAN = план"],
+[299,"прогрес","progress","nouns","Гарний прогрес!","Good progress!","proh-HRES","PROGRESS = прогрес"],
+[300,"стратегія","strategy","nouns","Гарна стратегія.","A good strategy.","strah-TEH-hih-yah","STRATEGY = стратегія"],
+[301,"мрія","dream","nouns","Я мав гарний сон.","I had a nice dream.","MRIH-yah","DREAM = мрія"],
+[302,"реальність","reality","nouns","Реальність інша.","Reality is different.","reh-AHL-nist","REALITY = реальність"],
+[303,"культура","culture","nouns","Українська культура багата.","Ukrainian culture is rich.","kool-TOO-rah","CULTURE = культура"],
+[304,"традиція","tradition","nouns","Дуже стара традиція.","A very ancient tradition.","trah-DIH-tsih-yah","TRADITION = традиція"],
+[305,"слово","word","nouns","Гарне слово.","A beautiful word.","SLOH-voh","SLOVO = word (Slavic root)"],
+[306,"речення","sentence","nouns","Напиши речення.","Write a sentence.","REH-chen-nyah","SPEECH = речення"],
+[307,"вимова","pronunciation","nouns","Вимова важка.","Pronunciation is difficult.","VIH-moh-vah","VOICE pronunciation = вимова"],
+[308,"словник","vocabulary/dictionary","nouns","Розширюю словник.","I expand my vocabulary.","slohv-NIK","WORD BANK = словник"],
+[309,"граматика","grammar","nouns","Вивчаю граматику.","I study grammar.","hrah-MAH-tih-kah","GRAMMAR = граматика"],
+[310,"лікарня","hospital","nouns","Лікарня поруч.","The hospital is nearby.","LIH-kar-nyah","HOSPITAL = лікарня"],
+[311,"аптека","pharmacy","nouns","Аптека відкрита.","The pharmacy is open.","ahp-TEH-kah","APOTHECARY = аптека"],
+[312,"здоров'я","health","nouns","Здоров'я понад усе.","Health comes first.","zdoh-ROH-vyah","ZDRAVIYE = health (Slavic)"],
+[313,"біль","pain","nouns","Відчуваю біль у спині.","I feel back pain.","bil","BILE = pain = біль"],
+[314,"температура","fever/temperature","nouns","Висока температура.","I have a high fever.","tem-peh-rah-TOO-rah","TEMPERATURE = температура"],
+[315,"застуда","cold (illness)","nouns","Застудився.","I've caught a cold.","zahs-TOO-dah","COLD = застуда"],
+[316,"кафе","café","nouns","Зустрінемось у кафе.","Let's meet at the café.","kah-FEH","CAFÉ = кафе"],
+[317,"банк","bank","nouns","Іду до банку.","I go to the bank.","bahnk","BANK = банк"],
+[318,"ринок","market","nouns","Ходжу на ринок у суботу.","I go to the market on Saturdays.","RIH-nok","RING of stalls = ринок"],
+[319,"вокзал","train station","nouns","Вокзал у центрі.","The station is downtown.","vohk-ZAHL","STATION = вокзал"],
+[320,"квартира","apartment","nouns","Знайшов гарну квартиру.","I found a nice apartment.","kvahr-TIH-rah","QUARTER = квартира"],
+[321,"кухня","kitchen","nouns","Українська кухня смачна.","Ukrainian cuisine is tasty.","KOOKH-nyah","KITCHEN = кухня"],
+[322,"ванна","bathroom","nouns","Де ванна кімната?","Where is the bathroom?","VAHN-nah","BATH = ванна"],
+[323,"ліжко","bed","nouns","Ліжко дуже м'яке.","The bed is very soft.","LIZH-koh","LIE down in ліжко"],
+[324,"один","one","nouns","Маю одну дитину.","I have one child.","oh-DIHN","ONE = один"],
+[325,"два","two","nouns","Маю двох котів.","I have two cats.","dvah","TWO = два"],
+[326,"три","three","nouns","Три кави, будь ласка.","Three coffees, please.","trih","THREE = три"],
+[327,"чотири","four","nouns","Чотири пори року.","Four seasons.","choh-TIH-rih","FOUR = чотири"],
+[328,"п'ять","five","nouns","П'ять хвилин.","Five minutes.","pyaht","FIVE = п'ять"],
+[329,"шість","six","nouns","О шостій вечора.","At six in the evening.","shist","SIX = шість"],
+[330,"сім","seven","nouns","Сім днів.","Seven days.","sim","SEVEN = сім"],
+[331,"вісім","eight","nouns","Вісім годин сну.","Eight hours of sleep.","VIH-sim","EIGHT = вісім"],
+[332,"дев'ять","nine","nouns","Дев'ять місяців.","Nine months.","DEV-yaht","NINE = дев'ять"],
+[333,"десять","ten","nouns","Десять євро.","Ten euros.","DEH-syaht","TEN = десять"],
+[334,"сто","hundred","nouns","Сто євро.","A hundred euros.","stoh","HUNDRED = сто"],
+[335,"тисяча","thousand","nouns","Тисяча дяків!","A thousand thanks!","TIH-syah-chah","THOUSAND = тисяча"],
+[336,"перший","first","adj","Перший день.","The first day.","PER-shiy","FIRST = перший"],
+[337,"другий","second","adj","Другий поверх.","The second floor.","DROO-hiy","SECOND = другий"],
+[338,"третій","third","adj","Третій розділ.","The third chapter.","TREH-tiy","THIRD = третій"],
+[339,"останній","last","adj","Востаннє.","The last time.","ohs-TAHN-niy","LAST = останній"],
+[340,"наступний","next","adj","Наступного тижня.","Next week.","nahs-TOOP-niy","NEXT = наступний"],
+[341,"приємний","nice/pleasant","adj","Він дуже приємний.","He's very nice.","prih-YEM-niy","PLEASANT = приємний"],
+[342,"веселий","fun/cheerful","adj","Дуже весело!","It's very fun!","veh-SEH-liy","CHEERFUL = веселий"],
+[343,"нудний","boring","adj","Цей фільм нудний.","This film is boring.","NOOD-niy","NUDGE to stay awake = нудний"],
+[344,"щасливий","happy","adj","Я дуже щасливий.","I'm very happy.","shchahs-LIH-viy","HAPPY = щасливий"],
+[345,"сердитий","angry","adj","Начальник сердитий.","The boss is angry.","ser-DIH-tiy","HEART-angry = сердитий"],
+[346,"здивований","surprised","adj","Я здивований!","I'm surprised!","zdih-VOH-vah-niy","AMAZED = здивований"],
+[347,"ревнивий","jealous","adj","Він дуже ревнивий.","He's very jealous.","rehv-NIH-viy","RIVALRY = ревнивий"],
+[348,"закоханий","in love","adj","Я закоханий у неї.","I'm in love with her.","zah-KOH-khah-niy","LOVE-STRUCK = закоханий"],
+[349,"гордий","proud","adj","Я пишаюся тобою.","I'm proud of you.","HOR-diy","PROUD = гордий"],
+[350,"ідеальний","perfect/ideal","adj","Ідеально!","It's perfect!","ih-deh-AHL-niy","IDEAL = ідеальний"],
+[351,"відмінний","excellent","adj","Відмінно!","Excellent!","vid-MIN-niy","EXCELLENT = відмінний"],
+[352,"нормальний","normal","adj","Це нормально.","It's normal.","nor-MAHL-niy","NORMAL = нормальний"],
+[353,"можливий","possible","adj","Це можливо.","It's possible.","mohzh-LIH-viy","POSSIBLE = можливий"],
+[354,"неможливий","impossible","adj","Це неможливо!","It's impossible!","neh-mohzh-LIH-viy","IMPOSSIBLE = неможливий"],
+[355,"необхідний","necessary","adj","Це необхідно.","It's necessary.","neh-ohb-KHID-niy","NECESSARY = необхідний"],
+[356,"корисний","useful","adj","Корисна порада.","Useful advice.","koh-RIHS-niy","USEFUL = корисний"],
+[357,"сильний","strong","adj","Він дуже сильний.","He's very strong.","SIL-niy","STRONG = сильний"],
+[358,"слабкий","weak","adj","Слабке місце.","A weak point.","SLAHB-kiy","WEAK = слабкий"],
+[359,"справжній","true/real/genuine","adj","Це правда.","It's true.","SPRAHV-zhniy","REAL = справжній"],
+[360,"фальшивий","false/fake","adj","Це неправда.","It's false.","fahl-SHIH-viy","FALSE = фальшивий"],
+[361,"сучасний","modern","adj","Сучасний дизайн.","A modern design.","soo-CHAHS-niy","MODERN = сучасний"],
+[362,"давній","ancient/old","adj","Стародавній палац.","An ancient palace.","DAHV-niy","ANCIENT = давній"],
+[363,"простий","simple","adj","Просте рішення.","A simple solution.","PROS-tiy","SIMPLE = простий"],
+[364,"складний","complex","adj","Складна проблема.","A complex problem.","sklahd-NIY","COMPLEX = складний"],
+[365,"спокійний","calm/quiet","adj","Тихе місце.","A quiet place.","spoh-KIY-niy","CALM = спокійний"],
+[366,"нервовий","nervous","adj","Я нервуюся.","I'm nervous.","ner-VOH-viy","NERVOUS = нервовий"],
+[367,"зайнятий","busy","adj","Я дуже зайнятий.","I'm very busy.","ZAY-nyah-tiy","OCCUPIED = зайнятий"],
+[368,"здатний","capable","adj","Він дуже здатний.","He's very capable.","ZDAHT-niy","CAPABLE = здатний"],
+[369,"пристрасний","passionate","adj","Він захоплений музикою.","He's passionate about music.","prihs-TRAHS-niy","PASSIONATE = пристрасний"],
+[370,"творчий","creative","adj","Творчий розум.","A creative mind.","TVOR-chiy","CREATIVE = творчий"],
+[371,"допитливий","curious","adj","Я дуже допитливий.","I'm very curious.","doh-piht-LIH-viy","CURIOUS = допитливий"],
+[372,"розумний","intelligent","adj","Вона дуже розумна.","She's very intelligent.","roh-ZOOM-niy","SMART = розумний"],
+[373,"щедрий","generous","adj","Він дуже щедрий.","He's very generous.","SHCHED-riy","GENEROUS = щедрий"],
+[374,"терплячий","patient","adj","Будь терплячим!","Be patient!","terp-LYAH-chiy","PATIENT = терплячий"],
+[375,"амбіційний","ambitious","adj","Він дуже амбіційний.","He's very ambitious.","ahm-bih-TSIY-niy","AMBITIOUS = амбіційний"],
+[376,"відповідальний","responsible","adj","Відповідальна людина.","A responsible person.","vid-poh-vih-DAHL-niy","RESPONSIBLE = відповідальний"],
+[377,"чесний","honest","adj","Чесна людина.","He's an honest person.","CHES-niy","HONEST = чесний"],
+[378,"добрий","kind/good","adj","Вона дуже добра.","She's very kind.","DOH-briy","GOOD = добрий"],
+[379,"зустріч","meeting/appointment","nouns","У мене зустріч.","I have a meeting.","ZOOS-trich","ENCOUNTER = зустріч"],
+[380,"договір","contract","nouns","Підписав договір.","I signed the contract.","doh-HOH-vir","AGREEMENT = договір"],
+[381,"зарплата","salary","nouns","Моя зарплата.","My salary.","zahr-PLAH-tah","EARNED PAY = зарплата"],
+[382,"компанія","company","nouns","Працюю у великій компанії.","I work for a large company.","kohm-PAH-nih-yah","COMPANY = компанія"],
+[383,"курс","course","nouns","Курс з української.","A Ukrainian course.","koors","COURSE = курс"],
+[384,"іспит","exam","nouns","Завтра іспит.","I have an exam tomorrow.","IHS-piht","EXAM test = іспит"],
+[385,"дослідження","research","nouns","Наукові дослідження.","Scientific research.","dohs-LID-zhen-nyah","RESEARCH = дослідження"],
+[386,"технологія","technology","nouns","Технологія розвивається.","Technology advances.","tekh-noh-LOH-hih-yah","TECHNOLOGY = технологія"],
+[387,"проект","project","nouns","Важливий проект.","An important project.","proh-EKT","PROJECT = проект"],
+[388,"виклик","challenge","nouns","Великий виклик.","A great challenge.","VIH-klihk","CHALLENGE = виклик"],
+[389,"можливість","opportunity","nouns","Чудова можливість.","An excellent opportunity.","mohzh-LIH-vist","OPPORTUNITY = можливість"],
+[390,"рішення","decision","nouns","Важке рішення.","A difficult decision.","RIH-shen-nyah","DECISION = рішення"],
+[391,"увага","attention","nouns","Зверни увагу!","Pay attention!","oo-VAH-hah","ATTENTION = увага"],
+[392,"пам'ять","memory","nouns","Маю гарну пам'ять.","I have a good memory.","PAH-myat","MEMORY = пам'ять"],
+[393,"звичка","habit","nouns","Погана звичка.","A bad habit.","ZVIHCH-kah","HABIT = звичка"],
+[394,"дисципліна","discipline","nouns","Дисципліна фундаментальна.","Discipline is fundamental.","dihs-tsih-PLIH-nah","DISCIPLINE = дисципліна"],
+[395,"мотивація","motivation","nouns","Маю велику мотивацію.","I have a lot of motivation.","moh-tih-VAH-tsih-yah","MOTIVATION = мотивація"],
+[396,"концентрація","concentration","nouns","Потрібна концентрація.","I need concentration.","kohn-tsen-TRAH-tsih-yah","CONCENTRATION = концентрація"],
+[397,"навчання","learning","nouns","Метод навчання.","The learning method.","nahv-CHAH-nyah","LEARNING = навчання"],
+[398,"значення","meaning","nouns","Яке значення?","What is the meaning?","znah-CHEN-nyah","MEANING = значення"],
+[399,"перекладати","to translate","verbs","Перекладаю цей текст.","I translate this text.","peh-reh-klah-DAH-tih","TRANSLATE = перекладати"],
+[400,"запам'ятовувати","to memorize","verbs","Запам'ятовую слова.","I memorize the words.","zah-pahm-yah-TOH-voo-vah-tih","MEMORIZE = запам'ятовувати"],
+[401,"покращувати","to improve","verbs","Моя українська покращується.","My Ukrainian is improving.","poh-KRAHSH-choo-vah-tih","IMPROVE = покращувати"],
+[402,"практикувати","to practice","verbs","Практикую щодня.","I practice every day.","prahk-tih-koo-VAH-tih","PRACTICE = практикувати"],
+[403,"слухати","to listen","verbs","Слухай уважно.","Listen carefully.","SLOO-khah-tih","LISTEN = слухати"],
+[404,"спостерігати","to observe","verbs","Спостерігаю все.","I observe everything.","spohs-teh-RIH-hah-tih","OBSERVE = спостерігати"],
+[405,"аналізувати","to analyze","verbs","Аналізую ситуацію.","I analyze the situation.","ah-nah-LIH-zoo-vah-tih","ANALYZE = аналізувати"],
+[406,"планувати","to plan","verbs","Планую кожен тиждень.","I plan every week.","plah-noo-VAH-tih","PLAN = планувати"],
+[407,"виконувати","to execute/carry out","verbs","Виконую план.","I execute the plan.","vih-KOH-noo-vah-tih","EXECUTE = виконувати"],
+[408,"ризик","risk","nouns","Взяти ризик.","To take a risk.","RIH-zihk","RISK = ризик"],
+[409,"перевага","advantage","nouns","Конкурентна перевага.","Competitive advantage.","peh-reh-VAH-hah","ADVANTAGE = перевага"],
+[410,"порівняння","comparison","nouns","Зробити порівняння.","To make a comparison.","poh-riv-NYAH-nyah","COMPARISON = порівняння"],
+[411,"різниця","difference","nouns","Яка різниця?","What's the difference?","RIZ-nih-tsyah","DIFFERENCE = різниця"],
+[412,"подібність","similarity","nouns","Помітна подібність.","A remarkable similarity.","poh-DIB-nist","SIMILARITY = подібність"],
+[413,"походження","origin","nouns","Українського походження.","Of Ukrainian origin.","poh-KHO-dzhen-nyah","ORIGIN = походження"],
+[414,"переклад","translation","nouns","Переклад важкий.","The translation is difficult.","peh-reh-KLAHD","TRANSLATION = переклад"],
+[415,"спілкування","communication","nouns","Ефективне спілкування.","Effective communication.","spil-koo-VAH-nyah","COMMUNICATION = спілкування"],
+[416,"відносини","relationship","nouns","Серйозні відносини.","A serious relationship.","vid-NOH-sih-nih","RELATIONSHIP = відносини"],
+[417,"дружба","friendship","nouns","Дружба безцінна.","Friendship is precious.","DROOZH-bah","DRUZHBA = friendship"],
+[418,"повага","respect","nouns","Повага фундаментальна.","Respect is fundamental.","poh-VAH-hah","RESPECT = повага"],
+[419,"лояльність","loyalty","nouns","Лояльність важлива.","Loyalty is important.","loh-YAHL-nist","LOYALTY = лояльність"],
+[420,"чесність","honesty","nouns","Чесність завжди перемагає.","Honesty always pays.","CHES-nist","HONESTY = чесність"],
+[421,"доброта","kindness","nouns","Доброта безкоштовна.","Kindness costs nothing.","doh-broh-TAH","GOODNESS = доброта"],
+[422,"смирення","humility","nouns","Смирення — чеснота.","Humility is a virtue.","smih-REN-nyah","HUMILITY = смирення"],
+[423,"амбіція","ambition","nouns","Амбіція необхідна.","Ambition is necessary.","ahm-BIH-tsih-yah","AMBITION = амбіція"],
+[424,"рішучість","determination","nouns","З великою рішучістю.","With great determination.","rih-SHOO-chist","DETERMINATION = рішучість"],
+[425,"зростання","growth","nouns","Особистісне зростання.","Personal growth.","zros-TAH-nyah","GROWTH = зростання"],
+[426,"мислення","mindset","nouns","Мислення зростання.","A growth mindset.","MIS-len-nyah","MINDSET/THINKING = мислення"],
+[427,"ставлення","attitude","nouns","Позитивне ставлення.","A positive attitude.","STAHV-len-nyah","ATTITUDE = ставлення"],
+[428,"перспектива","perspective","nouns","З іншої перспективи.","From a different perspective.","per-spek-TIH-vah","PERSPECTIVE = перспектива"],
+[429,"вільне говоріння","fluency","nouns","Досягти вільного говоріння.","To achieve fluency.","VIL-neh hoh-voh-RIN-nyah","FREE SPEECH = fluency"],
+[430,"занурення","immersion","nouns","Мовне занурення.","Linguistic immersion.","zah-NOO-ren-nyah","IMMERSION = занурення"],
+[431,"повторення","repetition","nouns","Повторення — мати навчання.","Repetition is the mother of learning.","pov-toh-REN-nyah","REPETITION = повторення"],
+[432,"асоціація","association","nouns","Розумова асоціація.","A mental association.","ah-soh-tsih-AH-tsih-yah","ASSOCIATION = асоціація"],
+[433,"контекст","context","nouns","У правильному контексті.","In the right context.","KOHN-tekst","CONTEXT = контекст"],
+[434,"вільно","fluently","adj","Говорить українською вільно.","She speaks fluent Ukrainian.","VIL-noh","FREELY = вільно"],
+[435,"носій мови","native speaker","nouns","Говори з носієм мови.","Speak with a native speaker.","noh-SIY MOH-vih","NATIVE SPEAKER = носій мови"],
+[436,"вимовляти","to pronounce","verbs","Як це вимовляється?","How do you pronounce it?","vih-mohv-LYAH-tih","PRONOUNCE = вимовляти"],
+[437,"перекладати","to translate","verbs","Перекладаю речення.","I translate the sentence.","peh-reh-klah-DAH-tih","TRANSLATE = перекладати"],
+[438,"занурюватися","to immerse","verbs","Занурюйся в мову.","Immerse yourself in the language.","zah-noo-RYOO-vah-tih-sya","IMMERSE = занурюватися"],
+[439,"деконструювати","to deconstruct","verbs","Деконструюю мову.","I deconstruct the language.","deh-kohn-stroo-YOO-vah-tih","DECONSTRUCT = деконструювати"],
+[440,"відбирати","to select","verbs","Відбираю ключові слова.","I select the key words.","vid-bih-RAH-tih","SELECT = відбирати"],
+[441,"зобов'язуватися","to commit","verbs","Зобов'язуюся повністю.","I commit fully.","zoh-bov-YAH-zoo-vah-tih-sya","COMMIT = зобов'язуватися"],
+[442,"відповідальність","responsibility","nouns","Беру відповідальність.","I take my responsibility.","vid-poh-vih-DAHL-nist","RESPONSIBILITY = відповідальність"],
+[443,"намір","intention","nouns","Мій намір добрий.","My intention is good.","NAH-mir","INTENTION = намір"],
+[444,"задоволення","satisfaction","nouns","Велике задоволення.","Great satisfaction.","zah-doh-VOH-len-nyah","SATISFACTION = задоволення"],
+[445,"нагорода","reward","nouns","Справедлива нагорода.","A fair reward.","nah-hoh-ROH-dah","REWARD = нагорода"],
+[446,"ціна","cost/price","nouns","Ціна висока.","The cost is high.","TSIH-nah","PRICE = ціна"],
+[447,"частота","frequency","nouns","Частота слів.","Word frequency.","chahs-TOH-tah","FREQUENCY = частота"],
+[448,"структура","structure","nouns","Структура речення.","The sentence structure.","strook-TOO-rah","STRUCTURE = структура"],
+[449,"принцип","principle","nouns","Фундаментальний принцип.","The fundamental principle.","PRIHN-tsihp","PRINCIPLE = принцип"],
+[450,"вільне мовлення","fluency","nouns","Вільне мовлення — ціль.","Fluency is the goal.","VIL-neh mohv-LEN-nyah","FREE SPEECH = fluency"],
+[451,"середовище","environment","nouns","Навчальне середовище.","Learning environment.","seh-reh-DOH-vih-shcheh","ENVIRONMENT = середовище"],
+[452,"суспільство","society","nouns","Українське суспільство.","Ukrainian society.","soos-PIL-stvoh","SOCIETY = суспільство"],
+[453,"природа","nature","nouns","Природа прекрасна.","Nature is beautiful.","prih-ROH-dah","NATURE = природа"],
+[454,"клімат","climate","nouns","Середземноморський клімат.","Mediterranean climate.","KLIh-maht","CLIMATE = клімат"],
+[455,"енергія","energy","nouns","Мало енергії сьогодні.","I have little energy today.","eh-NER-hih-yah","ENERGY = енергія"],
+[456,"заощаджувати","to save (money)","verbs","Заощаджую на відпустку.","I save up for vacation.","zah-ohsh-CHAHD-zhoo-vah-tih","SAVE = заощаджувати"],
+[457,"інвестувати","to invest","verbs","Інвестую в майбутнє.","I invest in the future.","in-ves-TOO-vah-tih","INVEST = інвестувати"],
+[458,"заробляти","to earn","verbs","Заробляю добре.","I earn well.","zah-rob-LYAH-tih","EARN = заробляти"],
+[459,"витрачати","to spend (money)","verbs","Витрачаю забагато.","I spend too much.","vih-TRAH-chah-tih","SPEND = витрачати"],
+[460,"не хвилюйся","don't worry","phrases","Не хвилюйся!","Don't worry!","neh khvih-LYOOY-sya","DON'T WORRY = не хвилюйся"],
+[461,"розслабся","relax","phrases","Розслабся!","Relax!","rohz-SLAHB-sya","RELAX = розслабся"],
+[462,"тренуватися","to train/work out","verbs","Тренуюся щодня.","I train every day.","treh-noo-VAH-tih-sya","TRAIN = тренуватися"],
+[463,"все буде добре","everything will be fine","phrases","Все буде добре!","Everything will be fine!","vseh BOO-deh DOH-breh","FAMOUS Ukrainian phrase of resilience"],
+[464,"слава Україні","glory to Ukraine","phrases","Слава Україні!","Glory to Ukraine!","SLAH-vah oo-krah-YIH-nih","СЛАВА УКРАЇНІ = national phrase"],
+[465,"вареники","dumplings","nouns","Бабуся робить вареники.","Grandmother makes dumplings.","vah-REH-nih-kih","Ukrainian national dish!"],
+[466,"борщ","borscht","nouns","Борщ — національна страва.","Borscht is a national dish.","borshch","BORSCHT = борщ (same!)"],
+[467,"вишиванка","embroidered shirt","nouns","Одягаю вишиванку.","I wear the embroidered shirt.","vih-shih-VAHN-kah","VYSHYVANKA = embroidered"],
+[468,"степ","steppe","nouns","Широкий степ.","The wide steppe.","step","STEPPE = степ"],
+[469,"Київ","Kyiv","nouns","Київ — столиця.","Kyiv is the capital.","KIH-yiv","KYIV = столиця України"],
+[470,"Дніпро","Dnipro river","nouns","Дніпро — велика ріка.","The Dnipro is a great river.","DNIH-proh","DNIPRO = great river of Ukraine"],
+[471,"незалежність","independence","nouns","День незалежності.","Independence Day.","neh-zah-LEH-zhnist","INDEPENDENCE = незалежність"],
+[472,"патріотизм","patriotism","nouns","Сильний патріотизм.","Strong patriotism.","pah-trih-oh-TIZM","PATRIOTISM = патріотизм"],
+[473,"мужність","bravery/courage","nouns","Велика мужність.","Great bravery.","MOOZH-nist","COURAGE = мужність"],
+[474,"стійкість","resilience","nouns","Українська стійкість.","Ukrainian resilience.","STIY-kist","RESILIENCE = стійкість"],
+[475,"надія","hope","nouns","Надія — остання вмирає.","Hope is the last to die.","NAH-dih-yah","HOPE = надія (also a name!)"],
+[476,"розмова","conversation","nouns","Цікава розмова.","An interesting conversation.","rohz-MOH-vah","CONVERSATION = розмова"],
+[477,"акцент","accent","nouns","Маю іноземний акцент.","I have a foreign accent.","ahk-TSENT","ACCENT = акцент"],
+[478,"діалект","dialect","nouns","Полтавський діалект.","The Poltava dialect.","dih-ah-LEKT","DIALECT = діалект"],
+[479,"абетка","alphabet","nouns","Кирилична абетка.","The Cyrillic alphabet.","ah-BET-kah","ALPHABET = абетка"],
+[480,"кирилиця","Cyrillic script","nouns","Вчу кирилицю.","I'm learning Cyrillic.","kih-RIH-lih-tsya","CYRILLIC = кирилиця"],
+[481,"зима","winter","nouns","Зима холодна.","Winter is cold.","ZIH-mah","ZIMMER cold = зима"],
+[482,"весна","spring","nouns","Весна прекрасна.","Spring is beautiful.","vehs-NAH","SPRING = весна"],
+[483,"літо","summer","nouns","Влітку їду на море.","In summer I go to the sea.","LIH-toh","SUMMER = літо"],
+[484,"осінь","autumn","nouns","Осінь барвиста.","Autumn is colourful.","OH-sin","FALL = осінь"],
+[485,"погода","weather","nouns","Яка погода!","What weather!","poh-HOH-dah","WEATHER = погода"],
+[486,"дощ","rain","nouns","Іде дощ.","It's raining.","doshch","DOSH of water = дощ"],
+[487,"сніг","snow","nouns","Іде сніг.","It's snowing.","snig","SNOW = сніг"],
+[488,"вітер","wind","nouns","Сильний вітер.","A strong wind.","VIH-ter","VENTUS = wind = вітер"],
+[489,"хмара","cloud","nouns","Темні хмари.","Dark clouds.","KHMAH-rah","GLOOM = хмара"],
+[490,"веселка","rainbow","nouns","Яскрава веселка.","A bright rainbow.","veh-SEL-kah","JOYFUL arc = веселка"],
+[491,"зірка","star","nouns","Зірки сяють.","The stars shine.","ZIR-kah","STAR = зірка"],
+[492,"небо","sky","nouns","Блакитне небо.","The blue sky.","NEH-boh","HEAVEN = небо"],
+[493,"ріка","river","nouns","Дніпро — велика ріка.","The Dnipro is a big river.","RIH-kah","RIVER = ріка"],
+[494,"озеро","lake","nouns","Гарне озеро.","A beautiful lake.","OH-zeh-roh","LAKE = озеро"],
+[495,"квітка","flower","nouns","Приніс тобі квіти.","I brought you flowers.","KVIT-kah","FLOWER = квітка"],
+[496,"дерево","tree","nouns","Дуже старе дерево.","A very old tree.","DEH-reh-voh","TREE = дерево"],
+[497,"поле","field","nouns","Жовте поле соняшників.","A yellow field of sunflowers.","POH-leh","FIELD = поле (Ukraine's symbol!)"],
+[498,"соняшник","sunflower","nouns","Соняшник — символ України.","Sunflower is Ukraine's symbol.","SOH-nyash-nihk","SUN + flower = соняшник"],
+[499,"калина","guelder rose","nouns","Червона калина.","The red guelder rose.","kah-LIH-nah","KALYNA = Ukrainian national symbol"],
+[500,"рідна мова","mother tongue","nouns","Рідна мова — скарб.","One's mother tongue is a treasure.","RID-nah MOH-vah","NATIVE LANGUAGE = рідна мова"]
+];
+
+// ─── State ───────────────────────────────────────────────────────────────────
+const IT=[
+[1,"essere","to be","verbs","Io sono felice.","I am happy.","EH-seh-reh","Think 'essence' — what something IS"],
+[2,"avere","to have","verbs","Ho una macchina rossa.","I have a red car.","ah-VEH-reh","'Have' without the H"],
+[3,"fare","to do/make","verbs","Cosa fai stasera?","What are you doing tonight?","FAH-reh","FARE = make it happen"],
+[4,"dire","to say/tell","verbs","Cosa vuoi dire?","What do you mean?","DEE-reh","DIRect words = dire"],
+[5,"andare","to go","verbs","Vado al lavoro a piedi.","I walk to work.","ahn-DAH-reh","an-DARE = go somewhere"],
+[6,"vedere","to see","verbs","Ci vediamo domani!","See you tomorrow!","veh-DEH-reh","VIDeo = vedere"],
+[7,"sapere","to know (facts)","verbs","So cucinare bene.","I know how to cook well.","sah-PEH-reh","SAPient = knowing"],
+[8,"volere","to want","verbs","Voglio un gelato.","I want an ice cream.","voh-LEH-reh","VOLunteer WANTS to help"],
+[9,"potere","can/to be able","verbs","Posso aiutarti.","I can help you.","poh-TEH-reh","POTential to act"],
+[10,"dovere","must/have to","verbs","Devo studiare di più.","I must study more.","doh-VEH-reh","DUTY = dovere"],
+[11,"venire","to come","verbs","Vieni con noi?","Are you coming with us?","veh-NEE-reh","CONVENe = come together"],
+[12,"stare","to stay/be","verbs","Come stai?","How are you?","STAH-reh","STAY put = stare"],
+[13,"dare","to give","verbs","Ti do il mio numero.","I'll give you my number.","DAH-reh","DONATe = give"],
+[14,"parlare","to speak","verbs","Parli italiano?","Do you speak Italian?","par-LAH-reh","PARLiament = speaking"],
+[15,"mettere","to put","verbs","Metti la borsa sul tavolo.","Put the bag on the table.","MET-teh-reh","Meter = to place"],
+[16,"prendere","to take","verbs","Prendo un caffè.","I'll take a coffee.","PREN-deh-reh","APPREHend = take hold"],
+[17,"trovare","to find","verbs","Ho trovato un appartamento.","I found an apartment.","troh-VAH-reh","TROVe = treasure found"],
+[18,"pensare","to think","verbs","Penso di sì.","I think so.","pen-SAH-reh","PENSive = deep in thought"],
+[19,"lasciare","to leave/let","verbs","Lasciami stare.","Leave me alone.","lah-SHYAH-reh","LET go = lasciare"],
+[20,"chiamare","to call","verbs","Come ti chiami?","What's your name?","kyah-MAH-reh","CLAIM your name"],
+[21,"capire","to understand","verbs","Non capisco.","I don't understand.","kah-PEE-reh","CAPture the meaning"],
+[22,"portare","to bring/carry","verbs","Porto io il vino.","I'll bring the wine.","por-TAH-reh","PORTer carries things"],
+[23,"chiedere","to ask","verbs","Posso chiedere una cosa?","Can I ask something?","KYEH-deh-reh","inQUIRE = ask"],
+[24,"tenere","to hold/keep","verbs","Tienimi il posto.","Hold my seat.","teh-NEH-reh","TENacious = holding on"],
+[25,"conoscere","to know (people)","verbs","Conosci Roma?","Do you know Rome?","koh-NOH-sheh-reh","CONNect with who you know"],
+[26,"uscire","to go out","verbs","Usciamo stasera?","Shall we go out tonight?","oo-SHEE-reh","EXIT = uscire"],
+[27,"sentire","to feel/hear","verbs","Sento la tua voce.","I hear your voice.","sen-TEE-reh","SENSory = sentire"],
+[28,"aprire","to open","verbs","Apri la finestra.","Open the window.","ah-PREE-reh","APERture = opening"],
+[29,"passare","to pass/spend","verbs","Passiamo una bella serata.","We spend a nice evening.","pas-SAH-reh","PASS time together"],
+[30,"lavorare","to work","verbs","Lavoro da casa.","I work from home.","lah-voh-RAH-reh","LABor = lavorare"],
+[31,"tornare","to return","verbs","Torno subito.","I'll be right back.","tor-NAH-reh","reTURN = tornare"],
+[32,"vivere","to live","verbs","Vivo a Milano.","I live in Milan.","VEE-veh-reh","VIVid = full of life"],
+[33,"mangiare","to eat","verbs","Mangiamo alle otto.","We eat at eight.","man-JAH-reh","MANGER = feeding trough"],
+[34,"guardare","to watch/look","verbs","Guardo la partita.","I'm watching the match.","gwar-DAH-reh","GUARD your gaze"],
+[35,"perdere","to lose","verbs","Non voglio perdere il treno.","I don't want to miss the train.","PER-deh-reh","PERDition = total loss"],
+[36,"scrivere","to write","verbs","Ti scrivo un messaggio.","I'll write you a message.","SKREE-veh-reh","SCRIBe = one who writes"],
+[37,"leggere","to read","verbs","Leggo ogni sera.","I read every evening.","LEJ-jeh-reh","LEGend = written story"],
+[38,"pagare","to pay","verbs","Pago io questa volta.","I'll pay this time.","pah-GAH-reh","PAID = pagare"],
+[39,"aspettare","to wait","verbs","Aspetta un momento.","Wait a moment.","ah-spet-TAH-reh","EXPECT someone = aspettare"],
+[40,"aiutare","to help","verbs","Puoi aiutarmi?","Can you help me?","ah-yoo-TAH-reh","AID = aiutare"],
+[41,"rispondere","to reply","verbs","Non ha risposto.","He didn't reply.","ree-SPON-deh-reh","RESPONDere"],
+[42,"cominciare","to begin","verbs","Quando cominciamo?","When do we start?","koh-min-CHAH-reh","COMMENce = start"],
+[43,"finire","to finish","verbs","Ho finito!","I'm done!","fee-NEE-reh","FINALe = the end"],
+[44,"giocare","to play","verbs","I bambini giocano fuori.","The children play outside.","joh-KAH-reh","JOKey playful game"],
+[45,"arrivare","to arrive","verbs","A che ora arrivi?","What time do you arrive?","ar-ree-VAH-reh","ARRIVal"],
+[46,"partire","to leave/depart","verbs","Parto domani mattina.","I leave tomorrow morning.","par-TEE-reh","DEPARTure = partire"],
+[47,"cambiare","to change","verbs","Devo cambiare treno.","I need to change trains.","kam-BYAH-reh","CHANGE = cambiare"],
+[48,"diventare","to become","verbs","Vuole diventare medico.","He wants to become a doctor.","dee-ven-TAH-reh","BECOME = diventare"],
+[49,"ricevere","to receive","verbs","Ho ricevuto la tua email.","I received your email.","ree-CHEH-veh-reh","RECEIVE = ricevere"],
+[50,"studiare","to study","verbs","Studio tre ore al giorno.","I study three hours a day.","stoo-DYAH-reh","STUDy = studiare"],
+[51,"dormire","to sleep","verbs","Dormo otto ore.","I sleep eight hours.","dor-MEE-reh","DORMitory = sleeping place"],
+[52,"ricordare","to remember","verbs","Non ricordo il suo nome.","I don't remember his name.","ree-kor-DAH-reh","RECORDing a memory"],
+[53,"dimenticare","to forget","verbs","Ho dimenticato l'ombrello.","I forgot my umbrella.","dee-men-tee-KAH-reh","diMENTia = forgetting"],
+[54,"imparare","to learn","verbs","Imparo ogni giorno.","I learn every day.","im-pah-RAH-reh","IMPARt = to teach/learn"],
+[55,"cercare","to look for","verbs","Cerco le chiavi.","I'm looking for my keys.","cher-KAH-reh","SEARCH = cercare"],
+[56,"decidere","to decide","verbs","Hai già deciso?","Have you decided yet?","deh-CHEE-deh-reh","DECIDE = decidere"],
+[57,"amare","to love","verbs","Amo la pizza.","I love pizza.","ah-MAH-reh","AMOrous = love"],
+[58,"capire","to grasp","verbs","Capisco il punto.","I grasp the point.","kah-PEE-reh","CAPture the concept"],
+[59,"spiegare","to explain","verbs","Me lo spieghi?","Can you explain it?","spyeh-GAH-reh","SPECIFy = spiegare"],
+[60,"preferire","to prefer","verbs","Preferisco il vino rosso.","I prefer red wine.","preh-feh-REE-reh","PREFERence"],
+[61,"credere","to believe","verbs","Ci credi?","Do you believe it?","KREH-deh-reh","CREDible = believable"],
+[62,"sperare","to hope","verbs","Spero di sì.","I hope so.","speh-RAH-reh","HOPE = sperare"],
+[63,"continuare","to continue","verbs","Continua così.","Keep it up.","kon-tee-noo-AH-reh","CONTINUe"],
+[64,"smettere","to quit/stop","verbs","Smettila!","Stop it!","ZMET-teh-reh","QUIT = smettere"],
+[65,"ripetere","to repeat","verbs","Può ripetere?","Can you repeat that?","ree-PEH-teh-reh","REPEAt = ripetere"],
+[66,"ridere","to laugh","verbs","Ridiamo spesso.","We laugh often.","REE-deh-reh","RIDiculous makes you laugh"],
+[67,"piangere","to cry","verbs","Il film mi ha fatto piangere.","The film made me cry.","PYAN-jeh-reh","PLAINt = cry"],
+[68,"correre","to run","verbs","Corro ogni mattina.","I run every morning.","KOR-reh-reh","CURRent rushing fast"],
+[69,"seguire","to follow","verbs","Segui la freccia.","Follow the arrow.","seh-GWEE-reh","SEQUEL follows"],
+[70,"bere","to drink","verbs","Bevo troppo caffè.","I drink too much coffee.","BEH-reh","BEVerage = bere"],
+[71,"cucinare","to cook","verbs","Cucino ogni sera.","I cook every evening.","koo-chee-NAH-reh","CULINary = cucina"],
+[72,"camminare","to walk","verbs","Camminiamo insieme.","Let's walk together.","kam-mee-NAH-reh","CAMPaign on foot"],
+[73,"ballare","to dance","verbs","Sai ballare?","Can you dance?","bal-LAH-reh","BALLroom dance"],
+[74,"cantare","to sing","verbs","Canta benissimo.","She sings beautifully.","kan-TAH-reh","CANTata = a song"],
+[75,"viaggiare","to travel","verbs","Amo viaggiare.","I love to travel.","vyah-JYAH-reh","VOYage = viaggio"],
+[76,"nuotare","to swim","verbs","Nuoto in piscina.","I swim in the pool.","nwoh-TAH-reh","NAUTical = water"],
+[77,"guidare","to drive","verbs","Guido ogni giorno.","I drive every day.","gwee-DAH-reh","GUIDe the wheel"],
+[78,"prenotare","to book/reserve","verbs","Ho prenotato un tavolo.","I booked a table.","preh-noh-TAH-reh","PRE + NOTAre = note in advance"],
+[79,"ringraziare","to thank","verbs","Ti ringrazio moltissimo.","I thank you very much.","reen-grah-TSYAH-reh","THANK = ringraziare"],
+[80,"organizzare","to organize","verbs","Organizzo una festa.","I'm organizing a party.","or-gah-nid-ZAH-reh","ORGANize = organizzare"],
+[81,"uomo","man","nouns","Quell'uomo è mio padre.","That man is my father.","WO-moh","UMano = human man"],
+[82,"donna","woman","nouns","La donna sorride.","The woman smiles.","DON-nah","DONna = Italian name"],
+[83,"bambino","child","nouns","Il bambino gioca.","The child plays.","bam-BEE-noh","BAMBino = little one"],
+[84,"ragazzo","boy/guy","nouns","Il ragazzo studia.","The boy studies.","rah-GAT-tsoh","RAGamuffin youth"],
+[85,"ragazza","girl","nouns","La ragazza canta.","The girl sings.","rah-GAT-tsah","RAGazza = lively girl"],
+[86,"amico","friend (m)","nouns","È il mio migliore amico.","He's my best friend.","ah-MEE-koh","AMIcable = friendly"],
+[87,"famiglia","family","nouns","La mia famiglia è grande.","My family is big.","fah-MEEL-yah","FAMILy = famiglia"],
+[88,"padre","father","nouns","Mio padre cucina bene.","My father cooks well.","PAH-dreh","PATer = father (Latin)"],
+[89,"madre","mother","nouns","Mia madre è medico.","My mother is a doctor.","MAH-dreh","MATer = mother (Latin)"],
+[90,"fratello","brother","nouns","Mio fratello è più giovane.","My brother is younger.","frah-TEL-loh","FRATernal = brotherly"],
+[91,"sorella","sister","nouns","Ho due sorelle.","I have two sisters.","soh-REL-lah","SORORity = sisterhood"],
+[92,"marito","husband","nouns","Mio marito è a Roma.","My husband is in Rome.","mah-REE-toh","MARITal = of marriage"],
+[93,"moglie","wife","nouns","Mia moglie lavora in banca.","My wife works at a bank.","MOL-yeh","MOGLie = spouse"],
+[94,"casa","house/home","nouns","La mia casa è in centro.","My home is downtown.","KAH-sah","CASA = home (Spanish too!)"],
+[95,"città","city","nouns","Roma è una bella città.","Rome is a beautiful city.","chit-TAH","CITy = città"],
+[96,"strada","street/road","nouns","La strada è affollata.","The street is crowded.","STRAH-dah","STRAIGHT road = strada"],
+[97,"negozio","shop/store","nouns","Il negozio è chiuso.","The shop is closed.","neh-GOH-tsyoh","NEGOtiate price in shop"],
+[98,"ristorante","restaurant","nouns","Andiamo al ristorante.","Let's go to the restaurant.","ree-stoh-RAN-teh","RESTaurant = ristorante"],
+[99,"scuola","school","nouns","La scuola inizia a settembre.","School starts in September.","SKWO-lah","SCHOLAR goes to school"],
+[100,"lavoro","work/job","nouns","Cerco un nuovo lavoro.","I'm looking for a new job.","lah-VOH-roh","LABor = lavoro"],
+[101,"tempo","time/weather","nouns","Non ho tempo oggi.","I don't have time today.","TEM-poh","TEMPoral = of time"],
+[102,"giorno","day","nouns","Buon giorno!","Good day!","JOR-noh","JOURNey through the day"],
+[103,"notte","night","nouns","Buona notte!","Good night!","NOT-teh","NOCTurnal = of night"],
+[104,"settimana","week","nouns","La prossima settimana.","Next week.","set-tee-MAH-nah","SETTe (7) days = settimana"],
+[105,"anno","year","nouns","Quest'anno vado in Italia.","This year I'm going to Italy.","AN-noh","ANNiversary = yearly"],
+[106,"acqua","water","nouns","Un bicchiere d'acqua, per favore.","A glass of water, please.","AHK-kwah","AQUAtic = of water"],
+[107,"vino","wine","nouns","Un bicchiere di vino rosso.","A glass of red wine.","VEE-noh","VINtage wine"],
+[108,"caffè","coffee","nouns","Un caffè macchiato, per favore.","A macchiato, please.","kaf-FEH","CAFfeine = caffè"],
+[109,"pane","bread","nouns","Il pane è appena sfornato.","The bread is freshly baked.","PAH-neh","PANtry holds bread"],
+[110,"pasta","pasta","nouns","La pasta al pomodoro è buona.","Pasta with tomato is good.","PAH-stah","PASTA = pasta!"],
+[111,"carne","meat","nouns","Questa carne è eccellente.","This meat is excellent.","KAR-neh","CARNivore eats carne"],
+[112,"pesce","fish","nouns","Il pesce è fresco oggi.","The fish is fresh today.","PEH-sheh","PIScatorial = of fish"],
+[113,"frutta","fruit","nouns","Mangio molta frutta.","I eat a lot of fruit.","FROOT-tah","FRUIt = frutta"],
+[114,"pranzo","lunch","nouns","Facciamo pranzo insieme?","Shall we have lunch together?","PRAN-tsoh","PRANDIAL = of a meal"],
+[115,"cena","dinner","nouns","La cena è alle otto.","Dinner is at eight.","CHEH-nah","Last CENA = da Vinci painting"],
+[116,"colazione","breakfast","nouns","Faccio colazione al bar.","I have breakfast at the café.","koh-lah-TSYOH-neh","COLa = start the day"],
+[117,"gelato","ice cream","nouns","Un gelato alla fragola.","A strawberry ice cream.","jeh-LAH-toh","GELAto = frozen delight!"],
+[118,"sole","sun","nouns","Il sole splende.","The sun shines.","SOH-leh","SOLar = of the sun"],
+[119,"luna","moon","nouns","La luna piena è bellissima.","The full moon is beautiful.","LOO-nah","LUNar = of the moon"],
+[120,"mare","sea","nouns","Vado al mare d'estate.","I go to the sea in summer.","MAH-reh","MARine = of the sea"],
+[121,"montagna","mountain","nouns","Vado in montagna a sciare.","I go to the mountains to ski.","mon-TAHN-yah","MOUNTain = montagna"],
+[122,"gatto","cat","nouns","Il mio gatto dorme sul divano.","My cat sleeps on the sofa.","GAT-toh","CAT = gatto"],
+[123,"cane","dog","nouns","Il cane abbaia forte.","The dog barks loudly.","KAH-neh","CANine = of dogs"],
+[124,"testa","head","nouns","Ho mal di testa.","I have a headache.","TES-tah","TESTament = head"],
+[125,"occhio","eye","nouns","Ha gli occhi azzurri.","She has blue eyes.","OK-kyoh","OCular = eye"],
+[126,"mano","hand","nouns","Dammi la mano.","Give me your hand.","MAH-noh","MANual = done by hand"],
+[127,"cuore","heart","nouns","Il mio cuore batte forte.","My heart beats fast.","KWO-reh","COR = heart (Latin)"],
+[128,"voce","voice","nouns","Ha una bella voce.","She has a beautiful voice.","VOH-cheh","VOCal = of voice"],
+[129,"nome","name","nouns","Come ti chiami? Il tuo nome?","What is your name?","NOH-meh","NOMenclature = naming"],
+[130,"libro","book","nouns","Sto leggendo un libro bellissimo.","I'm reading a wonderful book.","LEE-broh","LIBRary of libri"],
+[131,"telefono","phone","nouns","Il mio telefono è scarico.","My phone is dead.","teh-LEH-foh-noh","TELEphone = telefono"],
+[132,"soldi","money","nouns","Non ho abbastanza soldi.","I don't have enough money.","SOL-dee","SOLDiers paid in salt"],
+[133,"macchina","car","nouns","La mia macchina è rossa.","My car is red.","MAK-kee-nah","MACHine that moves"],
+[134,"treno","train","nouns","Il treno è in ritardo.","The train is late.","TREH-noh","TRAINe = treno"],
+[135,"aereo","airplane","nouns","L'aereo è in ritardo.","The plane is late.","ah-EH-reh-oh","AERial = of the air"],
+[136,"grande","big/great","adj","Ho una grande idea.","I have a great idea.","GRAN-deh","GRANDiose = great"],
+[137,"piccolo","small","adj","Ho un piccolo problema.","I have a small problem.","PIK-koh-loh","PICCOlo = small instrument"],
+[138,"buono","good","adj","Il cibo è buono.","The food is good.","BWO-noh","BONus = good extra"],
+[139,"cattivo","bad/naughty","adj","Che tempo cattivo!","What bad weather!","kat-TEE-voh","CATtivo sounds naughty"],
+[140,"bello","beautiful/nice","adj","Che bel posto!","What a beautiful place!","BEL-loh","BELLa = beautiful"],
+[141,"nuovo","new","adj","Ho un nuovo appartamento.","I have a new apartment.","NWO-voh","NOVel = new story"],
+[142,"vecchio","old","adj","È una vecchia tradizione.","It's an old tradition.","VEK-kyoh","VECHio = aged like vintage"],
+[143,"giovane","young","adj","È molto giovane.","She's very young.","JOH-vah-neh","JUVEnile = young"],
+[144,"alto","tall/high","adj","È molto alto.","He's very tall.","AL-toh","ALTitude = height"],
+[145,"basso","short/low","adj","La musica è troppo bassa.","The music is too low.","BAS-soh","BASS = low sound"],
+[146,"lungo","long","adj","È una storia lunga.","It's a long story.","LOON-goh","LONG = lungo"],
+[147,"caldo","hot/warm","adj","L'acqua è calda.","The water is hot.","KAL-doh","CALDron = hot pot"],
+[148,"freddo","cold","adj","Fa molto freddo oggi.","It's very cold today.","FRED-doh","FRIGid = freddo"],
+[149,"veloce","fast","adj","Il treno è veloce.","The train is fast.","veh-LOH-cheh","VELOCIty = speed"],
+[150,"facile","easy","adj","È più facile di prima.","It's easier than before.","FAH-chee-leh","FACILe = too easy"],
+[151,"difficile","difficult","adj","L'italiano è difficile.","Italian is difficult.","dee-FEE-chee-leh","DIFFICult = difficile"],
+[152,"importante","important","adj","È molto importante.","It's very important.","im-por-TAN-teh","IMPORTant = importante"],
+[153,"interessante","interesting","adj","Un libro interessante.","An interesting book.","in-teh-res-SAN-teh","INTERESTing"],
+[154,"stanco","tired","adj","Sono stanchissimo.","I'm exhausted.","STAN-koh","STAGNANT energy = tired"],
+[155,"contento","happy/pleased","adj","Sono contento di vederti.","I'm happy to see you.","kon-TEN-toh","CONTENTed = satisfied"],
+[156,"triste","sad","adj","È una storia triste.","It's a sad story.","TREE-steh","TRISTe sounds sad"],
+[157,"libero","free/available","adj","Sei libero stasera?","Are you free tonight?","LEE-beh-roh","LIBERty = freedom"],
+[158,"pronto","ready","adj","Sono pronto!","I'm ready!","PRON-toh","PROMPT = ready now"],
+[159,"sicuro","safe/sure","adj","Sei sicuro?","Are you sure?","see-KOO-roh","SECURe = sicuro"],
+[160,"pulito","clean","adj","La casa è pulita.","The house is clean.","poo-LEE-toh","POLISHed = clean"],
+[161,"e","and","connectors","Pane e burro.","Bread and butter.","eh","E = and (math too!)"],
+[162,"o","or","connectors","Caffè o tè?","Coffee or tea?","oh","O = or"],
+[163,"ma","but","connectors","È bello ma caro.","It's nice but expensive.","mah","MA = but"],
+[164,"però","however","connectors","Mi piace, però è caro.","I like it, however it's expensive.","peh-ROH","PERÒ = but though"],
+[165,"quindi","so/therefore","connectors","Sono stanco, quindi resto.","I'm tired, so I'll stay.","KWIN-dee","QUINTessentially = therefore"],
+[166,"perché","because/why","connectors","Perché sei qui?","Why are you here?","per-KEH","PER + ché = for what?"],
+[167,"quando","when","connectors","Quando arrivi?","When do you arrive?","KWAN-doh","WHEN = quando"],
+[168,"dove","where","connectors","Dove sei?","Where are you?","DOH-veh","WHERE doves fly"],
+[169,"come","how/like","connectors","Come stai?","How are you?","KOH-meh","HOW = come"],
+[170,"cosa","what","connectors","Cosa vuoi?","What do you want?","KOH-zah","WHAT thing = cosa"],
+[171,"chi","who","connectors","Chi sei?","Who are you?","kee","CHI = the key WHO"],
+[172,"che","that/which","connectors","Penso che sia tardi.","I think that it's late.","keh","THAT connects clauses"],
+[173,"se","if","connectors","Se vuoi, vengo.","If you want, I'll come.","seh","IF = se"],
+[174,"anche","also/too","connectors","Vengo anch'io.","I'm coming too.","AN-keh","ALSO = anche"],
+[175,"sempre","always","connectors","È sempre in ritardo.","He's always late.","SEM-preh","SEMPRe = always (music term)"],
+[176,"mai","never","connectors","Non lo faccio mai.","I never do it.","MY","NEVER = mai"],
+[177,"spesso","often","connectors","Ci vado spesso.","I go there often.","SPES-soh","OFTEN = spesso"],
+[178,"adesso","now","connectors","Vieni adesso.","Come now.","ah-DES-soh","ADDRESS the present"],
+[179,"poi","then/afterwards","connectors","Prima mangio, poi esco.","First I eat, then I go out.","POY","POI = then"],
+[180,"prima","before/first","connectors","Prima di dormire.","Before sleeping.","PREE-mah","PRIMary = first"],
+[181,"dopo","after/later","connectors","Dopo il pranzo.","After lunch.","DOH-poh","AFTER = dopo"],
+[182,"insieme","together","connectors","Andiamo insieme.","Let's go together.","in-SYEH-meh","ENSEMBLE = together"],
+[183,"forse","maybe","connectors","Forse vengo.","Maybe I'll come.","FOR-seh","PERhaps = forse"],
+[184,"molto","a lot/very","connectors","Grazie molto!","Thank you very much!","MOL-toh","MULTItude = molto"],
+[185,"poco","a little","connectors","Un poco di sale.","A little salt.","POH-koh","POCo in music = a little"],
+[186,"troppo","too much","connectors","Fa troppo caldo.","It's too hot.","TROP-poh","TROPO = too much"],
+[187,"quasi","almost","connectors","Sono quasi pronto.","I'm almost ready.","KWAH-zee","QUASI = almost (same in English!)"],
+[188,"solo","only/just","connectors","Solo un momento.","Just a moment.","SOH-loh","SOLE = only one"],
+[189,"tutto","all/everything","connectors","Ho mangiato tutto.","I ate everything.","TOOT-toh","TOTal = tutto"],
+[190,"ogni","every/each","connectors","Ogni giorno.","Every day.","OH-nyee","OmNI = every"],
+[191,"niente","nothing","connectors","Non ho detto niente.","I said nothing.","NYEN-teh","NIL = niente"],
+[192,"qualcosa","something","connectors","Voglio qualcosa da mangiare.","I want something to eat.","kwal-KOH-zah","QUAL cosa = some thing"],
+[193,"allora","so/well/then","connectors","Allora, andiamo?","So, shall we go?","al-LOH-rah","ALORS = so (French same!)"],
+[194,"già","already","connectors","L'ho già visto.","I've already seen it.","JAH","ALREADy = già"],
+[195,"ancora","still/yet","connectors","Non è ancora pronto.","It's not ready yet.","an-KOH-rah","ANCHORed still"],
+[196,"davvero","really/truly","connectors","Davvero?","Really?","dav-VEH-roh","VERY real = davvero"],
+[197,"comunque","anyway","connectors","Comunque, ci vediamo.","Anyway, we'll see each other.","koh-MOON-kweh","COMMONque = anyway"],
+[198,"invece","instead","connectors","Invece di correre, cammino.","Instead of running, I walk.","in-VEH-cheh","IN VICE versa = instead"],
+[199,"purtroppo","unfortunately","connectors","Purtroppo non posso.","Unfortunately I can't.","poor-TROP-poh","TOO BAD = purtroppo"],
+[200,"almeno","at least","connectors","Almeno un caffè.","At least a coffee.","al-MEH-noh","ALMENo = at least"],
+[201,"per favore","please","phrases","Un caffè, per favore.","A coffee, please.","per fah-VOH-reh","For a favor = per favore"],
+[202,"grazie","thank you","phrases","Mille grazie!","Thank you so much!","GRAH-tsyeh","GRATItude = grazie"],
+[203,"prego","you're welcome","phrases","Grazie! — Prego!","Thanks! — You're welcome!","PREH-goh","PRAYer of welcome"],
+[204,"scusa","sorry/excuse me","phrases","Scusa, non ti avevo visto.","Sorry, I didn't see you.","SKOO-zah","EXCUSE = scusa"],
+[205,"mi dispiace","I'm sorry","phrases","Mi dispiace molto.","I'm very sorry.","mee dee-SPYA-cheh","It displeases me = mi dispiace"],
+[206,"buongiorno","good morning/day","phrases","Buongiorno a tutti!","Good morning everyone!","bwon-JOR-noh","BUONO + giorno = good day"],
+[207,"buonasera","good evening","phrases","Buonasera, come sta?","Good evening, how are you?","bwoh-nah-SEH-rah","BUONA + sera = good evening"],
+[208,"ciao","hi/bye","phrases","Ciao! Come stai?","Hi! How are you?","CHOW","CIAO = both hi and bye!"],
+[209,"arrivederci","goodbye","phrases","Arrivederci a presto!","Goodbye, see you soon!","ar-ree-veh-DER-chee","Until we see each other again"],
+[210,"come si dice","how do you say","phrases","Come si dice 'dog' in italiano?","How do you say dog in Italian?","KOH-meh see DEE-cheh","HOW do you SAY = come si dice"],
+[211,"non capisco","I don't understand","phrases","Non capisco, può ripetere?","I don't understand, repeat?","non kah-PEE-skoh","NON + capisco = don't understand"],
+[212,"quanto costa","how much","phrases","Quanto costa questo?","How much does this cost?","KWAN-toh KOS-tah","HOW MUCH = quanto costa"],
+[213,"mi chiamo","my name is","phrases","Mi chiamo Marco.","My name is Marco.","mee KYAH-moh","I call myself = mi chiamo"],
+[214,"ho fame","I'm hungry","phrases","Ho una fame da lupo!","I'm starving!","oh FAH-meh","I HAVE hunger = ho fame"],
+[215,"mi piace","I like","phrases","Mi piace moltissimo!","I like it very much!","mee PYAH-cheh","It pleases me = mi piace"],
+[216,"dov'è","where is","phrases","Dov'è la stazione?","Where is the station?","doh-VEH","WHERE IS = dov'è"],
+[217,"sto bene","I'm fine","phrases","Sto bene, grazie!","I'm fine, thanks!","stoh BEH-neh","I stay well = sto bene"],
+[218,"che ora è","what time is it","phrases","Che ora è?","What time is it?","keh OH-rah eh","WHAT HOUR = che ora è"],
+[219,"meno male","thank goodness","phrases","Meno male che sei arrivato!","Thank goodness you arrived!","MEH-noh MAH-leh","LESS bad = meno male"],
+[220,"in bocca al lupo","good luck","phrases","In bocca al lupo!","Good luck! (in the wolf's mouth)","in BOK-kah al LOO-poh","Into the wolf's mouth = good luck!"],
+[221,"ti voglio bene","I love you (warmly)","phrases","Ti voglio bene.","I love you (family/friends).","tee VOL-yoh BEH-neh","I WANT you well = I love you"],
+[222,"mi manchi","I miss you","phrases","Mi manchi tanto.","I miss you so much.","mee MAN-kee","You're lacking to me = mi manchi"],
+[223,"che bello","how beautiful","phrases","Che bello!","How beautiful!","keh BEL-loh","CHE + bello = how nice"],
+[224,"peccato","what a pity","phrases","Peccato che non puoi venire!","What a pity you can't come!","pek-KAH-toh","SIN/SHAME = peccato"],
+[225,"magari","I wish/maybe","phrases","Magari potessi venire!","I wish I could come!","mah-GAH-ree","Hopeful maybe = magari"],
+[226,"benvenuto","welcome","phrases","Benvenuto in Italia!","Welcome to Italy!","ben-veh-NOO-toh","BEN + venuto = well come"],
+[227,"buona fortuna","good luck","phrases","Buona fortuna!","Good luck!","BWO-nah for-TOO-nah","GOOD + fortune = buona fortuna"],
+[228,"salute","cheers/bless you","phrases","Salute!","Cheers! / Bless you!","sah-LOO-teh","HEALTH = salute (toast & sneeze)"],
+[229,"buon appetito","enjoy your meal","phrases","Buon appetito!","Enjoy your meal!","bwon ap-peh-TEE-toh","GOOD appetite = bon appétit"],
+[230,"non fa niente","it doesn't matter","phrases","Non fa niente!","It doesn't matter!","non fah NYEN-teh","No problem = non fa niente"],
+[231,"rosso","red","adj","Il vino rosso.","The red wine.","ROS-soh","ROSé = pinkish red"],
+[232,"blu","blue","adj","Il cielo è blu.","The sky is blue.","bloo","BLUE = blu (same!)"],
+[233,"verde","green","adj","L'erba è verde.","The grass is green.","VER-deh","VERDant = green"],
+[234,"giallo","yellow","adj","Il limone è giallo.","The lemon is yellow.","JAL-loh","YELLOW = giallo"],
+[235,"bianco","white","adj","La neve è bianca.","The snow is white.","BYAN-koh","BLANKo = white blank"],
+[236,"nero","black","adj","Caffè nero.","Black coffee.","NEH-roh","NERO = dark emperor"],
+[237,"arancione","orange","adj","L'arancia è arancione.","The orange is orange.","ah-ran-CHOH-neh","ORANGEd fruit color"],
+[238,"viola","purple","adj","Mi piace il viola.","I like purple.","VYOH-lah","VIOLet = purple flower"],
+[239,"grigio","grey","adj","Un cielo grigio.","A grey sky.","GREE-joh","GREY = grigio"],
+[240,"marrone","brown","adj","Capelli marroni.","Brown hair.","mar-ROH-neh","MARRONe = chestnut brown"],
+[241,"oggi","today","connectors","Cosa fai oggi?","What are you doing today?","OJ-jee","TODAY = oggi"],
+[242,"ieri","yesterday","connectors","Ieri sono andato al cinema.","Yesterday I went to the cinema.","YEH-ree","YESTERDAY = ieri"],
+[243,"domani","tomorrow","connectors","Ci vediamo domani.","See you tomorrow.","doh-MAH-nee","DOMINi of the future"],
+[244,"lunedì","Monday","nouns","Il lunedì lavoro.","On Monday I work.","loo-neh-DEE","LUNA = moon's day"],
+[245,"martedì","Tuesday","nouns","Martedì ho riunione.","Tuesday I have a meeting.","mar-teh-DEE","MARS's day"],
+[246,"mercoledì","Wednesday","nouns","Mercoledì andiamo al cinema.","Wednesday we go to the cinema.","mer-koh-leh-DEE","MERCURY's day"],
+[247,"giovedì","Thursday","nouns","Giovedì usciamo.","Thursday we go out.","joh-veh-DEE","JOVE/Jupiter's day"],
+[248,"venerdì","Friday","nouns","Il venerdì sono felice.","On Friday I'm happy.","veh-ner-DEE","VENus's day"],
+[249,"sabato","Saturday","nouns","Il sabato riposo.","On Saturday I rest.","SAH-bah-toh","SABbath = rest day"],
+[250,"domenica","Sunday","nouns","La domenica vado in chiesa.","On Sunday I go to church.","doh-MEH-nee-kah","DOMINi = Lord's day"],
+[251,"medico","doctor","nouns","Il medico è bravo.","The doctor is good.","MEH-dee-koh","MEDical = medico"],
+[252,"avvocato","lawyer","nouns","Chiamo il mio avvocato.","I call my lawyer.","av-voh-KAH-toh","ADVOCate = avvocato"],
+[253,"ingegnere","engineer","nouns","Sono un ingegnere.","I am an engineer.","in-jen-YEH-reh","ENGINEer = ingegnere"],
+[254,"insegnante","teacher","nouns","L'insegnante è severa.","The teacher is strict.","in-sen-YAN-teh","IN + segnante = one who teaches"],
+[255,"studente","student","nouns","Sono uno studente.","I am a student.","stoo-DEN-teh","STUDENt = studente"],
+[256,"idea","idea","nouns","Ho una buona idea.","I have a good idea.","ee-DEH-ah","IDEA = same!"],
+[257,"problema","problem","nouns","Abbiamo un problema.","We have a problem.","proh-BLEH-mah","PROBLEMa = problem"],
+[258,"soluzione","solution","nouns","Trovare una soluzione.","To find a solution.","soh-loo-TSYOH-neh","SOLUTIONe"],
+[259,"domanda","question","nouns","Ho una domanda.","I have a question.","doh-MAN-dah","DEMAND a question"],
+[260,"risposta","answer","nouns","Non so la risposta.","I don't know the answer.","ree-SPOS-tah","RESPONSe = risposta"],
+[261,"storia","history/story","nouns","Racconta una storia.","Tell me a story.","STOH-ryah","STORy of the past"],
+[262,"notizia","news","nouns","Una buona notizia!","Good news!","noh-TEE-tsyah","NOTICE = notizia"],
+[263,"verità","truth","nouns","Dimmi la verità.","Tell me the truth.","veh-ree-TAH","VERITy = truth"],
+[264,"libertà","freedom","nouns","La libertà è fondamentale.","Freedom is fundamental.","lee-ber-TAH","LIBERTy = libertà"],
+[265,"pace","peace","nouns","Il mondo vuole pace.","The world wants peace.","PAH-cheh","PEACE = pace"],
+[266,"amore","love","nouns","L'amore è cieco.","Love is blind.","ah-MOH-reh","AMOrous = love"],
+[267,"felicità","happiness","nouns","Cerca la felicità.","She seeks happiness.","feh-lee-chee-TAH","FELICITy = happiness"],
+[268,"paura","fear","nouns","Ho paura del buio.","I'm afraid of the dark.","pah-OO-rah","POOR you from fear = paura"],
+[269,"coraggio","courage","nouns","Ci vuole coraggio.","It takes courage.","koh-RAH-joh","COURAGe = coraggio"],
+[270,"fiducia","trust","nouns","Ho fiducia in te.","I trust you.","fee-DOO-chah","FIDElity = trust = fiducia"],
+[271,"internet","internet","nouns","Uso internet ogni giorno.","I use the internet every day.","IN-ter-net","INTERNET = same!"],
+[272,"computer","computer","nouns","Lavoro al computer.","I work on the computer.","kom-PYOO-ter","COMPUTER = same!"],
+[273,"messaggio","message","nouns","Ti mando un messaggio.","I'll send you a message.","mes-SAJ-joh","MESSAGe = messaggio"],
+[274,"applicazione","app","nouns","Scarico l'applicazione.","I download the app.","ap-plee-kah-TSYOH-neh","APPLICATIONe = app"],
+[275,"wifi","wifi","nouns","C'è il wifi qui?","Is there wifi here?","WEE-fee","WIFI = same!"],
+[276,"calcio","football/soccer","nouns","Guardo il calcio.","I watch football.","KAL-choh","CALCio = kick"],
+[277,"palestra","gym","nouns","Vado in palestra.","I go to the gym.","pah-LES-trah","PALESTRa = training ground"],
+[278,"viaggio","trip/journey","nouns","È stato un bel viaggio.","It was a great trip.","VYAH-joh","VOYage = viaggio"],
+[279,"vacanza","vacation","nouns","Vado in vacanza a luglio.","I go on holiday in July.","vah-KAN-tsah","VACATIONza = vacation"],
+[280,"musica","music","nouns","Amo la musica italiana.","I love Italian music.","MOO-zee-kah","MUSIc = musica"],
+[281,"film","film/movie","nouns","Ho visto un bel film.","I saw a good film.","film","FILM = same!"],
+[282,"partita","match/game","nouns","Guardo la partita.","I watch the match.","par-TEE-tah","PARTita = a play/match"],
+[283,"mondo","world","nouns","Il mondo è grande.","The world is big.","MON-doh","MONDial = of the world"],
+[284,"paese","country/village","nouns","Il mio paese è piccolo.","My village is small.","pah-EH-zeh","PAYSage = land/country"],
+[285,"governo","government","nouns","Il governo italiano.","The Italian government.","goh-VER-noh","GOVERNment = governo"],
+[286,"lavoro","work","nouns","Il lavoro di squadra.","Teamwork.","lah-VOH-roh","LABor = lavoro"],
+[287,"obiettivo","goal/objective","nouns","Il mio obiettivo è chiaro.","My goal is clear.","oh-byet-TEE-voh","OBJECTIVo"],
+[288,"successo","success","nouns","Ha avuto molto successo.","He had great success.","sook-CHES-soh","SUCCESSo"],
+[289,"errore","error/mistake","nouns","Ho fatto un errore.","I made a mistake.","er-ROH-reh","ERROR = errore"],
+[290,"esperienza","experience","nouns","Ho molta esperienza.","I have a lot of experience.","es-peh-RYEN-tsah","EXPERIENZa"],
+[291,"qualità","quality","nouns","Alta qualità.","High quality.","kwah-lee-TAH","QUALITy = qualità"],
+[292,"momento","moment","nouns","Un momento difficile.","A difficult moment.","moh-MEN-toh","MOMENTo = moment"],
+[293,"possibilità","possibility","nouns","C'è una possibilità.","There's a possibility.","pos-see-bee-lee-TAH","POSSIBILITy"],
+[294,"cambiamento","change","nouns","Un grande cambiamento.","A big change.","kam-byah-MEN-toh","CHANGEment"],
+[295,"sistema","system","nouns","Il sistema funziona.","The system works.","sees-TEH-mah","SYSTEMa = system"],
+[296,"metodo","method","nouns","Il metodo DiSSS.","The DiSSS method.","MEH-toh-doh","METHOD = metodo"],
+[297,"risultato","result","nouns","Un ottimo risultato.","An excellent result.","ree-zool-TAH-toh","RESULTato"],
+[298,"piano","plan/floor","nouns","Il piano d'azione.","The action plan.","PYAH-noh","PLANe = piano"],
+[299,"progresso","progress","nouns","Buon progresso!","Good progress!","proh-GRES-soh","PROGRESSo"],
+[300,"strategia","strategy","nouns","Una buona strategia.","A good strategy.","strah-TEH-jah","STRATEGy = strategia"],
+[301,"sogno","dream","nouns","Ho fatto un bel sogno.","I had a nice dream.","SOHN-yoh","SONambulism = sleepwalking/dreaming"],
+[302,"realtà","reality","nouns","La realtà è diversa.","Reality is different.","reh-al-TAH","REALITy = realtà"],
+[303,"cultura","culture","nouns","La cultura italiana è ricca.","Italian culture is rich.","kool-TOO-rah","CULTURe = cultura"],
+[304,"tradizione","tradition","nouns","Una tradizione molto antica.","A very ancient tradition.","trah-dee-TSYOH-neh","TRADITIONe"],
+[305,"lingua","language/tongue","nouns","Parlo tre lingue.","I speak three languages.","LEEN-gwah","LINGUal = of the tongue"],
+[306,"parola","word","nouns","Una bella parola.","A beautiful word.","pah-ROH-lah","PARabel = words of a parable"],
+[307,"frase","sentence","nouns","Scrivi una frase.","Write a sentence.","FRAH-zeh","PHRASe = frase"],
+[308,"pronuncia","pronunciation","nouns","La pronuncia è difficile.","Pronunciation is difficult.","proh-NOON-chah","PRONUNCiation = pronuncia"],
+[309,"vocabolario","vocabulary","nouns","Amplio il mio vocabolario.","I expand my vocabulary.","voh-kah-boh-LAH-ryoh","VOCABULARy = vocabolario"],
+[310,"dizionario","dictionary","nouns","Uso il dizionario.","I use the dictionary.","dee-tsyoh-NAH-ryoh","DICTIONARy = dizionario"],
+[311,"ospedale","hospital","nouns","L'ospedale è vicino.","The hospital is nearby.","os-peh-DAH-leh","HOSPITal = ospedale"],
+[312,"farmacia","pharmacy","nouns","La farmacia è aperta.","The pharmacy is open.","far-mah-CHEE-ah","PHARMACy = farmacia"],
+[313,"salute","health","nouns","La salute viene prima.","Health comes first.","sah-LOO-teh","SALUTe = health toast!"],
+[314,"dolore","pain","nouns","Sento dolore alla schiena.","I feel back pain.","doh-LOH-reh","DOLorous = painful"],
+[315,"febbre","fever","nouns","Ho la febbre alta.","I have a high fever.","FEB-breh","FEBRile = feverish"],
+[316,"bar","café","nouns","Ci troviamo al bar.","Let's meet at the café.","bar","BAR = same!"],
+[317,"banca","bank","nouns","Vado in banca.","I go to the bank.","BAN-kah","BANK = banca"],
+[318,"mercato","market","nouns","Vado al mercato il sabato.","I go to the market on Saturdays.","mer-KAH-toh","MARKet = mercato"],
+[319,"stazione","station","nouns","La stazione è in centro.","The station is downtown.","stah-TSYOH-neh","STATIONe"],
+[320,"aeroporto","airport","nouns","L'aeroporto è fuori città.","The airport is outside the city.","ah-eh-roh-POR-toh","AERo + PORT = airport"],
+[321,"ufficio","office","nouns","Lavoro in ufficio.","I work in an office.","oof-FEE-choh","OFFICe = ufficio"],
+[322,"appartamento","apartment","nouns","Ho trovato un bel appartamento.","I found a nice apartment.","ap-par-tah-MEN-toh","APARTment = appartamento"],
+[323,"cucina","kitchen","nouns","La cucina italiana è famosa.","Italian cuisine is famous.","koo-CHEE-nah","CULINary = cucina"],
+[324,"bagno","bathroom","nouns","Dov'è il bagno?","Where is the bathroom?","BAHN-yoh","BATH = bagno"],
+[325,"letto","bed","nouns","Il letto è molto morbido.","The bed is very soft.","LET-toh","Let me sleep in BED"],
+[326,"uno","one","nouns","Ho un figlio.","I have one child.","OO-noh","UNIque = uno"],
+[327,"due","two","nouns","Ho due gatti.","I have two cats.","DOO-eh","DUal = two"],
+[328,"tre","three","nouns","Tre caffè, per favore.","Three coffees, please.","treh","TRIangle = three sides"],
+[329,"quattro","four","nouns","Quattro stagioni.","Four seasons.","KWAT-troh","QUADruple = four"],
+[330,"cinque","five","nouns","Cinque minuti.","Five minutes.","CHIN-kweh","QUINTet = five"],
+[331,"sei","six","nouns","Alle sei di sera.","At six in the evening.","sey","SEXtet = six"],
+[332,"sette","seven","nouns","Sette giorni.","Seven days.","SET-teh","SEPTember = 7th month"],
+[333,"otto","eight","nouns","Otto ore di sonno.","Eight hours of sleep.","OT-toh","OCTave = eight notes"],
+[334,"nove","nine","nouns","Nove mesi.","Nine months.","NOH-veh","NOVember = 9th month"],
+[335,"dieci","ten","nouns","Dieci euro.","Ten euros.","DYEH-chee","DECade = ten years"],
+[336,"cento","hundred","nouns","Cento euro.","A hundred euros.","CHEN-toh","CENTury = hundred years"],
+[337,"mille","thousand","nouns","Mille grazie!","A thousand thanks!","MEEL-leh","MILLEnium = thousand years"],
+[338,"primo","first","adj","Il primo giorno.","The first day.","PREE-moh","PRIMary = first"],
+[339,"secondo","second","adj","Il secondo piano.","The second floor.","seh-KON-doh","SECONDary = second"],
+[340,"ultimo","last","adj","L'ultima volta.","The last time.","OOL-tee-moh","ULTIMate = last"],
+[341,"prossimo","next","adj","La prossima settimana.","Next week.","PROS-see-moh","PROXimate = next/near"],
+[342,"simpatico","nice/likeable","adj","È molto simpatico.","He's very nice.","sim-PAH-tee-koh","SYMPAThetic = simpatico"],
+[343,"divertente","fun/funny","adj","È molto divertente!","It's very fun!","dee-ver-TEN-teh","DIVERTing = entertaining"],
+[344,"noioso","boring","adj","Questo film è noioso.","This film is boring.","noh-YOH-zoh","ANNOYing = noioso"],
+[345,"felice","happy","adj","Sono molto felice.","I'm very happy.","feh-LEE-cheh","FELICITy = happiness"],
+[346,"arrabbiato","angry","adj","Il capo è arrabbiato.","The boss is angry.","ar-rab-BYAH-toh","RABid anger"],
+[347,"sorpreso","surprised","adj","Sono sorpreso!","I'm surprised!","sor-PREH-zoh","SURPRISEd = sorpreso"],
+[348,"geloso","jealous","adj","È molto geloso.","He's very jealous.","jeh-LOH-zoh","JEALous = geloso"],
+[349,"innamorato","in love","adj","Sono innamorato di lei.","I'm in love with her.","in-nah-moh-RAH-toh","ENAMORED = innamorato"],
+[350,"orgoglioso","proud","adj","Sono orgoglioso di te.","I'm proud of you.","or-goh-LYO-zoh","ORGULLO = pride (Spanish)"],
+[351,"perfetto","perfect","adj","È perfetto!","It's perfect!","per-FET-toh","PERFECt = perfetto"],
+[352,"ottimo","excellent","adj","Ottimo!","Excellent!","OT-tee-moh","OPTImal = ottimo"],
+[353,"normale","normal","adj","È normale.","It's normal.","nor-MAH-leh","NORMAl = normale"],
+[354,"possibile","possible","adj","È possibile.","It's possible.","pos-SEE-bee-leh","POSSIBLe = possibile"],
+[355,"impossibile","impossible","adj","È impossibile!","It's impossible!","im-pos-SEE-bee-leh","IMPOSSIBLe = impossibile"],
+[356,"necessario","necessary","adj","È necessario.","It's necessary.","neh-ches-SAH-ryoh","NECESSARy = necessario"],
+[357,"utile","useful","adj","Un consiglio utile.","Useful advice.","OO-tee-leh","UTILe = useful"],
+[358,"forte","strong/loud","adj","È molto forte.","He's very strong.","FOR-teh","FORTe = strong (music term too)"],
+[359,"debole","weak","adj","Un punto debole.","A weak point.","DEH-boh-leh","DEBILitate = debole"],
+[360,"vero","true/real","adj","È vero.","It's true.","VEH-roh","VERITy = truth"],
+[361,"falso","false","adj","È falso.","It's false.","FAL-soh","FALSe = falso"],
+[362,"moderno","modern","adj","Un design moderno.","A modern design.","moh-DER-noh","MODERn = moderno"],
+[363,"antico","ancient","adj","Un palazzo antico.","An ancient palace.","an-TEE-koh","ANTIQue = antico"],
+[364,"semplice","simple","adj","Una soluzione semplice.","A simple solution.","SEM-plee-cheh","SIMPLe = semplice"],
+[365,"complesso","complex","adj","Un problema complesso.","A complex problem.","kom-PLES-soh","COMPLEXo = complex"],
+[366,"tranquillo","calm/quiet","adj","Un posto tranquillo.","A quiet place.","tran-KWEEL-loh","TRANQUILlo = tranquillo"],
+[367,"nervoso","nervous","adj","Sono nervoso.","I'm nervous.","ner-VOH-zoh","NERVOUSo = nervoso"],
+[368,"occupato","busy","adj","Sono molto occupato.","I'm very busy.","ok-koo-PAH-toh","OCCUPied = busy"],
+[369,"disposto","willing","adj","Sono disposto ad aiutare.","I'm willing to help.","dees-POS-toh","DISPOSEd = disposto"],
+[370,"capace","capable","adj","È molto capace.","He's very capable.","kah-PAH-cheh","CAPABLe = capace"],
+[371,"appassionato","passionate","adj","È appassionato di musica.","He's passionate about music.","ap-pas-syoh-NAH-toh","PASSIONATEo = appassionato"],
+[372,"creativo","creative","adj","Una mente creativa.","A creative mind.","kreh-ah-TEE-voh","CREATIVe = creativo"],
+[373,"curioso","curious","adj","Sono molto curioso.","I'm very curious.","koo-RYOH-zoh","CURIOus = curioso"],
+[374,"intelligente","intelligent","adj","È molto intelligente.","She's very intelligent.","in-tel-lee-JEN-teh","INTELLIGENTe = intelligente"],
+[375,"generoso","generous","adj","È molto generoso.","He's very generous.","jeh-neh-ROH-zoh","GENEROUSo = generoso"],
+[376,"paziente","patient","adj","Sii paziente!","Be patient!","pah-TSYEN-teh","PATIENTe = paziente"],
+[377,"ambizioso","ambitious","adj","È molto ambizioso.","He's very ambitious.","am-bee-TSYOH-zoh","AMBITIOUSo = ambizioso"],
+[378,"responsabile","responsible","adj","È una persona responsabile.","She's a responsible person.","reh-spon-SAH-bee-leh","RESPONSIBLe = responsabile"],
+[379,"onesto","honest","adj","È una persona onesta.","He's an honest person.","oh-NES-toh","HONESTo = onesto"],
+[380,"gentile","kind","adj","È molto gentile.","She's very kind.","jen-TEE-leh","GENTLe = gentile"],
+[381,"appuntamento","appointment","nouns","Ho un appuntamento.","I have an appointment.","ap-poon-tah-MEN-toh","APPOINTMENTo = appuntamento"],
+[382,"riunione","meeting","nouns","Ho una riunione.","I have a meeting.","ryoo-NYOH-neh","REUNION = riunione"],
+[383,"contratto","contract","nouns","Ho firmato il contratto.","I signed the contract.","kon-TRAT-toh","CONTRACt = contratto"],
+[384,"stipendio","salary","nouns","Il mio stipendio.","My salary.","stee-PEN-dyoh","STIPENDio = stipend/salary"],
+[385,"azienda","company","nouns","Lavoro per una grande azienda.","I work for a large company.","ah-TSYEN-dah","BUSINESS = azienda"],
+[386,"corso","course","nouns","Un corso di italiano.","An Italian course.","KOR-soh","COURSe = corso"],
+[387,"esame","exam","nouns","Ho un esame domani.","I have an exam tomorrow.","eh-ZAH-meh","EXAMination = esame"],
+[388,"ricerca","research","nouns","La ricerca scientifica.","Scientific research.","ree-CHER-kah","RESEARCh = ricerca"],
+[389,"tecnologia","technology","nouns","La tecnologia avanza.","Technology advances.","teh-knoh-loh-JEE-ah","TECHNOLOGy = tecnologia"],
+[390,"progetto","project","nouns","Un progetto importante.","An important project.","proh-JET-toh","PROJECt = progetto"],
+[391,"sfida","challenge","nouns","Una grande sfida.","A great challenge.","SFEE-dah","CHALLENGEa = sfida"],
+[392,"opportunità","opportunity","nouns","Un'ottima opportunità.","An excellent opportunity.","op-por-too-nee-TAH","OPPORTUNITy"],
+[393,"decisione","decision","nouns","Una decisione difficile.","A difficult decision.","deh-chee-ZYOH-neh","DECISIONe"],
+[394,"attenzione","attention","nouns","Fai attenzione!","Pay attention!","at-ten-TSYOH-neh","ATTENTIONe = attention"],
+[395,"memoria","memory","nouns","Ho una buona memoria.","I have a good memory.","meh-MOH-ryah","MEMORy = memoria"],
+[396,"abitudine","habit","nouns","Una cattiva abitudine.","A bad habit.","ah-bee-TOO-dee-neh","HABITudine = abitudine"],
+[397,"disciplina","discipline","nouns","La disciplina è fondamentale.","Discipline is fundamental.","dees-chee-PLEE-nah","DISCIPLINa = discipline"],
+[398,"motivazione","motivation","nouns","Ho molta motivazione.","I have a lot of motivation.","moh-tee-vah-TSYOH-neh","MOTIVATIONe"],
+[399,"concentrazione","concentration","nouns","Ho bisogno di concentrazione.","I need concentration.","kon-chen-trah-TSYOH-neh","CONCENTRATIONe"],
+[400,"apprendimento","learning","nouns","L'apprendimento è un viaggio.","Learning is a journey.","ap-pren-dee-MEN-toh","APPRENTiceship = learning"],
+[401,"radice","root","nouns","Le radici della lingua.","The roots of the language.","rah-DEE-cheh","RADICal = root = radice"],
+[402,"prefisso","prefix","nouns","Il prefisso di una parola.","The prefix of a word.","preh-FEES-soh","PREFIXo = prefisso"],
+[403,"suffisso","suffix","nouns","Il suffisso cambia il significato.","The suffix changes the meaning.","soof-FEES-soh","SUFFIXo = suffisso"],
+[404,"significato","meaning","nouns","Qual è il significato?","What is the meaning?","seen-yee-fee-KAH-toh","SIGNIFICANce = significato"],
+[405,"grammatica","grammar","nouns","Studio la grammatica.","I study grammar.","gram-MAH-tee-kah","GRAMMARtica = grammatica"],
+[406,"consonante","consonant","nouns","Una consonante dura.","A hard consonant.","kon-soh-NAN-teh","CONSONANTe = consonant"],
+[407,"vocale","vowel","nouns","Le cinque vocali.","The five vowels.","voh-KAH-leh","VOWel = vocale"],
+[408,"sillaba","syllable","nouns","La parola ha tre sillabe.","The word has three syllables.","SEEL-lah-bah","SYLLABle = sillaba"],
+[409,"accento","accent/stress","nouns","L'accento tonico.","The stress accent.","at-CHEN-toh","ACCENTe = accento"],
+[410,"dialetto","dialect","nouns","Il dialetto veneziano.","The Venetian dialect.","dyah-LET-toh","DIALECt = dialetto"],
+[411,"natale","Christmas/native","adj","Buon Natale!","Merry Christmas!","nah-TAH-leh","NATALe = birth = natal"],
+[412,"compleanno","birthday","nouns","Buon compleanno!","Happy birthday!","kom-pleh-AN-noh","COMPLEANNo = birthday"],
+[413,"regalo","gift","nouns","Un bel regalo.","A nice gift.","reh-GAH-loh","REGALe = royal gift"],
+[414,"festa","party/holiday","nouns","Una festa bellissima.","A beautiful party.","FES-tah","FESTival = festa"],
+[415,"matrimonio","wedding","nouns","Il matrimonio è sabato.","The wedding is Saturday.","mah-tree-MOH-nyoh","MATRIMONy = matrimonio"],
+[416,"pranzo","lunch","nouns","Il pranzo è pronto.","Lunch is ready.","PRAN-tsoh","PRANDIAL = of a meal"],
+[417,"colore","color","nouns","Qual è il tuo colore preferito?","What's your favorite color?","koh-LOH-reh","COLORe = color"],
+[418,"dipinto","painting","nouns","Un bel dipinto.","A beautiful painting.","dee-PEEN-toh","PAINTed = dipinto"],
+[419,"scultura","sculpture","nouns","Una scultura di marmo.","A marble sculpture.","skool-TOO-rah","SCULPTURe = scultura"],
+[420,"architettura","architecture","nouns","L'architettura italiana.","Italian architecture.","ar-kee-tet-TOO-rah","ARCHITECTure = architettura"],
+[421,"opera","opera/work","nouns","L'opera di Verdi.","Verdi's opera.","OH-peh-rah","OPERA = same!"],
+[422,"pittore","painter","nouns","Leonardo era un grande pittore.","Leonardo was a great painter.","peet-TOH-reh","PAINTer = pittore"],
+[423,"scrittore","writer","nouns","È uno scrittore famoso.","He is a famous writer.","skrit-TOH-reh","SCRITTore = writer"],
+[424,"musicista","musician","nouns","È un bravo musicista.","He is a good musician.","moo-zee-CHEES-tah","MUSICISTa"],
+[425,"attore","actor","nouns","È un attore di talento.","He is a talented actor.","at-TOH-reh","ACTor = attore"],
+[426,"regista","director (film)","nouns","Il regista ha vinto l'Oscar.","The director won the Oscar.","reh-JEES-tah","REGISTa = director"],
+[427,"fotografo","photographer","nouns","È un fotografo professionista.","He's a professional photographer.","foh-TOH-grah-foh","PHOTOGRAPHo = fotografo"],
+[428,"cuoco","chef/cook","nouns","Il cuoco è bravissimo.","The chef is excellent.","KWO-koh","COOK = cuoco"],
+[429,"cameriere","waiter","nouns","Il cameriere è gentile.","The waiter is kind.","kah-meh-RYEH-reh","CAMEra room person"],
+[430,"pompiere","firefighter","nouns","I pompieri sono coraggiosi.","The firefighters are brave.","pom-PYEH-reh","PUMPiere = pumps water"],
+[431,"ambiente","environment","nouns","L'ambiente è importante.","The environment is important.","am-BYEN-teh","AMBIENTe = surroundings"],
+[432,"natura","nature","nouns","La natura è bellissima.","Nature is beautiful.","nah-TOO-rah","NATURe = natura"],
+[433,"clima","climate","nouns","Il clima mediterraneo.","The Mediterranean climate.","KLEE-mah","CLIMATe = clima"],
+[434,"energia","energy","nouns","Ho poca energia oggi.","I have little energy today.","eh-ner-JEE-ah","ENERGy = energia"],
+[435,"inquinamento","pollution","nouns","L'inquinamento urbano.","Urban pollution.","in-kwee-nah-MEN-toh","CONTAM ination = inquinamento"],
+[436,"riciclare","to recycle","verbs","Riciclo i rifiuti.","I recycle the waste.","ree-chee-KLAH-reh","RECYCLEare = riciclare"],
+[437,"risparmiare","to save","verbs","Risparmio per le vacanze.","I save up for vacation.","rees-par-MYAH-reh","SAVEiare = risparmiare"],
+[438,"investire","to invest","verbs","Investo nel futuro.","I invest in the future.","in-ves-TEE-reh","INVESTire = invest"],
+[439,"guadagnare","to earn","verbs","Guadagno bene.","I earn well.","gwah-dahn-YAH-reh","GAIN = guadagnare"],
+[440,"spendere","to spend","verbs","Spendo troppo.","I spend too much.","SPEN-deh-reh","SPENDere = spendere"],
+[441,"preoccuparsi","to worry","verbs","Non ti preoccupare!","Don't worry!","preh-ok-koo-PAR-see","preoCCUPYarsi = worry yourself"],
+[442,"rilassarsi","to relax","verbs","Rilassati!","Relax!","ree-las-SAR-see","RELAXarsi = rilassarsi"],
+[443,"allenarsi","to train/work out","verbs","Mi alleno ogni giorno.","I train every day.","al-leh-NAR-see","TRAIN yourself = allenarsi"],
+[444,"migliorare","to improve","verbs","Il mio italiano migliora.","My Italian is improving.","meel-yoh-RAH-reh","AMELIORATEare = migliorare"],
+[445,"praticare","to practice","verbs","Pratico ogni giorno.","I practice every day.","prah-tee-KAH-reh","PRACTICare = praticare"],
+[446,"ascoltare","to listen","verbs","Ascolta con attenzione.","Listen carefully.","ah-skol-TAH-reh","ASCOLTare = listen"],
+[447,"osservare","to observe","verbs","Osservo tutto.","I observe everything.","os-ser-VAH-reh","OBSERVEare = osservare"],
+[448,"analizzare","to analyze","verbs","Analizzo la situazione.","I analyze the situation.","ah-nah-lid-ZAH-reh","ANALYZEare = analizzare"],
+[449,"pianificare","to plan","verbs","Pianifico ogni settimana.","I plan every week.","pyah-nee-fee-KAH-reh","PLANificare = pianificare"],
+[450,"eseguire","to execute/carry out","verbs","Eseguo il piano.","I execute the plan.","eh-zeh-GWEE-reh","EXECUTEire = eseguire"],
+[451,"rischio","risk","nouns","Prendere un rischio.","To take a risk.","REES-kyoh","RISK = rischio"],
+[452,"vantaggio","advantage","nouns","Il vantaggio competitivo.","Competitive advantage.","van-TAH-joh","ADVANTAGEo = vantaggio"],
+[453,"svantaggio","disadvantage","nouns","Lo svantaggio principale.","The main disadvantage.","zvan-TAH-joh","DISADVANTAGEo = svantaggio"],
+[454,"confronto","comparison","nouns","Fare un confronto.","To make a comparison.","kon-FRON-toh","CONFRONTation = confronto"],
+[455,"differenza","difference","nouns","Qual è la differenza?","What's the difference?","dif-feh-REN-tsah","DIFFERENCe"],
+[456,"somiglianza","similarity","nouns","Una somiglianza notevole.","A remarkable similarity.","soh-meel-YAN-tsah","SIMILarity = somiglianza"],
+[457,"origine","origin","nouns","Di origine italiana.","Of Italian origin.","oh-REE-jee-neh","ORIGIn = origine"],
+[458,"traduzione","translation","nouns","La traduzione è difficile.","The translation is difficult.","trah-doo-TSYOH-neh","TRANSLATIONe = traduzione"],
+[459,"interpretazione","interpretation","nouns","Una bella interpretazione.","A beautiful interpretation.","in-ter-preh-tah-TSYOH-neh","INTERPRETATIONe"],
+[460,"comunicazione","communication","nouns","Una comunicazione efficace.","Effective communication.","koh-moo-nee-kah-TSYOH-neh","COMMUNICATIONe"],
+[461,"relazione","relationship","nouns","Una relazione seria.","A serious relationship.","reh-lah-TSYOH-neh","RELATIONe = relationship"],
+[462,"amicizia","friendship","nouns","L'amicizia è preziosa.","Friendship is precious.","ah-mee-CHEE-tsyah","AMICAble friendship"],
+[463,"rispetto","respect","nouns","Il rispetto è fondamentale.","Respect is fundamental.","ree-SPET-toh","RESPECt = rispetto"],
+[464,"fiducia","trust","nouns","Rapporto di fiducia.","Relationship of trust.","fee-DOO-chah","FIDElity = trust"],
+[465,"lealtà","loyalty","nouns","La lealtà è importante.","Loyalty is important.","leh-al-TAH","LOYALTy = lealtà"],
+[466,"onestà","honesty","nouns","L'onestà paga sempre.","Honesty always pays.","oh-nes-TAH","HONESTy = onestà"],
+[467,"gentilezza","kindness","nouns","La gentilezza non costa niente.","Kindness costs nothing.","jen-tee-LET-tsah","GENTLEness = gentilezza"],
+[468,"umiltà","humility","nouns","L'umiltà è una virtù.","Humility is a virtue.","oo-meel-TAH","HUMILiTy = umiltà"],
+[469,"ambizione","ambition","nouns","L'ambizione è necessaria.","Ambition is necessary.","am-bee-TSYOH-neh","AMBITIONe = ambizione"],
+[470,"determinazione","determination","nouns","Con grande determinazione.","With great determination.","deh-ter-mee-nah-TSYOH-neh","DETERMINATIONe"],
+[471,"crescita","growth","nouns","La crescita personale.","Personal growth.","KREH-shee-tah","CRESCENdo = growing"],
+[472,"apprendimento","learning","nouns","Il metodo di apprendimento.","The learning method.","ap-pren-dee-MEN-toh","APPRENTiceship = learning"],
+[473,"mentalità","mindset","nouns","Una mentalità di crescita.","A growth mindset.","men-tah-lee-TAH","MENTALITy = mentalità"],
+[474,"atteggiamento","attitude","nouns","Un atteggiamento positivo.","A positive attitude.","at-tej-jah-MEN-toh","ATTITUDEamento = atteggiamento"],
+[475,"prospettiva","perspective","nouns","Da una prospettiva diversa.","From a different perspective.","pros-pet-TEE-vah","PROSPECTive = prospettiva"],
+[476,"fluidità","fluency","nouns","Raggiungere la fluidità.","To achieve fluency.","floo-ee-dee-TAH","FLUIDity = fluidità"],
+[477,"immersione","immersion","nouns","L'immersione linguistica.","Linguistic immersion.","im-mer-ZYOH-neh","IMMERSIONe = immersion"],
+[478,"ripetizione","repetition","nouns","La ripetizione è la chiave.","Repetition is the key.","ree-peh-tee-TSYOH-neh","REPETITIONe = ripetizione"],
+[479,"associazione","association","nouns","Un'associazione mentale.","A mental association.","as-soh-chah-TSYOH-neh","ASSOCIATIONe = associazione"],
+[480,"contesto","context","nouns","Nel contesto giusto.","In the right context.","kon-TES-toh","CONTEXt = contesto"],
+[481,"fluente","fluent","adj","Parla italiano fluente.","She speaks fluent Italian.","floo-EN-teh","FLUENTe = fluente"],
+[482,"madrelingua","native speaker","nouns","Parla con un madrelingua.","Speak with a native speaker.","mah-dreh-LEEN-gwah","MOTHER tongue = madrelingua"],
+[483,"pronunciare","to pronounce","verbs","Come si pronuncia?","How do you pronounce it?","proh-noon-CHAH-reh","PRONOUNCEare = pronunciare"],
+[484,"tradurre","to translate","verbs","Traduci questa frase.","Translate this sentence.","trah-DOOR-reh","TRANSlate = tradurre"],
+[485,"memorizzare","to memorize","verbs","Memorizzo le parole.","I memorize the words.","meh-moh-reed-ZAH-reh","MEMORIZEare = memorizzare"],
+[486,"applicare","to apply","verbs","Applica il metodo.","Apply the method.","ap-plee-KAH-reh","APPLYare = applicare"],
+[487,"decostruire","to deconstruct","verbs","Decostruisco la lingua.","I deconstruct the language.","deh-kos-troo-EE-reh","DECONSTRUCTire = decostruire"],
+[488,"selezionare","to select","verbs","Seleziono le parole chiave.","I select the key words.","seh-leh-tsyoh-NAH-reh","SELECTionare = selezionare"],
+[489,"sequenziare","to sequence","verbs","Sequenzio l'apprendimento.","I sequence the learning.","seh-kwen-TSYAH-reh","SEQUENCEiare = sequenziare"],
+[490,"impegnarsi","to commit","verbs","Mi impegno a fondo.","I commit fully.","im-pen-YAR-see","ENGAGEarsi = impegnarsi"],
+[491,"responsabilità","responsibility","nouns","Prendo la mia responsabilità.","I take my responsibility.","reh-spon-sah-bee-lee-TAH","RESPONSIBILITy"],
+[492,"intenzione","intention","nouns","La mia intenzione è buona.","My intention is good.","in-ten-TSYOH-neh","INTENTIONe = intenzione"],
+[493,"soddisfazione","satisfaction","nouns","Una grande soddisfazione.","Great satisfaction.","sod-dees-fah-TSYOH-neh","SATISFACTIONe = soddisfazione"],
+[494,"ricompensa","reward","nouns","Una giusta ricompensa.","A fair reward.","ree-kom-PEN-sah","REWARDpensa = ricompensa"],
+[495,"costo","cost","nouns","Il costo è alto.","The cost is high.","KOS-toh","COSt = costo"],
+[496,"frequenza","frequency","nouns","La frequenza delle parole.","Word frequency.","freh-KWEN-tsah","FREQUENCy = frequenza"],
+[497,"vocabolario","vocabulary","nouns","Amplio il vocabolario.","I expand my vocabulary.","voh-kah-boh-LAH-ryoh","VOCABULARy = vocabolario"],
+[498,"struttura","structure","nouns","La struttura della frase.","The sentence structure.","stroo-TOO-rah","STRUCTURe = struttura"],
+[499,"principio","principle","nouns","Il principio fondamentale.","The fundamental principle.","preen-CHEE-pyoh","PRINCIPle = principio"],
+[500,"fluenza","fluency","nouns","La fluenza è l'obiettivo.","Fluency is the goal.","floo-EN-tsah","FLUENCy = fluenza"]
+];
+
+// Map data to objects
+const langs={it:IT,uk:UK};
+let lang='it', cat='all', search='', words=[], learned=new Set(JSON.parse(localStorage.getItem('ld_learned')||'[]')), streak=JSON.parse(localStorage.getItem('ld_streak')||'[]');
+let curW=null, fcIdx=0, fcQueue=[], fcSeen=0, fcKnown=0, fcFlipped=false;
+
+function initWords(){
+  const src=langs[lang]||langs.it;
+  words=src.map(d=>({rank:d[0],native:d[1],en:d[2],cat:d[3],ex:d[4],exen:d[5],pron:d[6],hook:d[7]}));
+}
+initWords();
+
+// ─── Nav ─────────────────────────────────────────────────────────────────────
+function show(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.querySelectorAll('.nav-itm').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  if(id==='wordbank') render();
+  if(id==='flashcards') initFC();
+  if(id==='stakes') renderCal();
+  if(id==='diagnostic') renderDiag();
+  if(id==='alphabet') renderAlpha();
+}
+
+// ─── Language ─────────────────────────────────────────────────────────────────
+function setLang(l){
+  lang=l;
+  document.body.className=l==='uk'?'uk':'';
+  document.getElementById('btn-it').classList.toggle('active',l==='it');
+  document.getElementById('btn-uk').classList.toggle('active',l==='uk');
+  document.getElementById('ph-lang').textContent=l==='it'?'🇮🇹 Italian':'🇺🇦 Ukrainian';
+  const navAlpha=document.getElementById('nav-alphabet');
+  if(navAlpha) navAlpha.style.display=l==='uk'?'':'none';
+  initWords();
+  updateSB();
+  // Re-render whichever panel is currently active
+  const active=document.querySelector('.panel.active');
+  if(active){
+    const id=active.id.replace('panel-','');
+    if(id==='wordbank') render();
+    else if(id==='flashcards') initFC();
+    else if(id==='diagnostic') renderDiag();
+    else if(id==='alphabet' && l==='it'){
+      // Alphabet only makes sense for Ukrainian — redirect to wordbank
+      show('wordbank', document.querySelector('[onclick*="wordbank"]'));
+    }
+  } else {
+    render();
+  }
+}
+
+// ─── Progress ─────────────────────────────────────────────────────────────────
+function saveLearned(){try{localStorage.setItem('ld_learned',JSON.stringify([...learned]));}catch(e){}}
+function updateSB(){
+  const n=learned.size, t=500, pct=Math.round(n/t*100);
+  document.getElementById('sb-big').textContent=n;
+  document.getElementById('sb-fill').style.width=pct+'%';
+  document.getElementById('sb-l').textContent=n+' learned';
+  document.getElementById('wb-l').textContent=n;
+  document.getElementById('wb-p').textContent=pct+'%';
+}
+
+// ─── Word Bank ────────────────────────────────────────────────────────────────
+function setCat(c,btn){
+  cat=c;
+  document.querySelectorAll('.cat').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  render();
+}
+function render(){
+  const q=(document.getElementById('srch').value||'').toLowerCase();
+  const w=words.filter(w=>{
+    if(cat==='learned') return learned.has(w.rank);
+    if(cat!=='all'&&w.cat!==cat) return false;
+    if(q&&!w.native.toLowerCase().includes(q)&&!w.en.toLowerCase().includes(q)) return false;
+    return true;
+  });
+  document.getElementById('wb-s').textContent=w.length;
+  const g=document.getElementById('wgrid');
+  g.innerHTML=w.map((wd,i)=>`
+    <div class="wcard${learned.has(wd.rank)?' done':''}" onclick="openModal(${wd.rank})" style="animation-delay:${Math.min(i,30)*0.02}s">
+      ${learned.has(wd.rank)?'<div class="wc-ck">✓</div>':''}
+      <div class="wc-rk">#${wd.rank}</div>
+      <div class="wc-w">${wd.native}</div>
+      <div class="wc-e">${wd.en}</div>
+      <span class="wc-ct ${wd.cat}">${wd.cat}</span>
+    </div>`).join('');
+}
+
+// ─── Modal ─────────────────────────────────────────────────────────────────────
+async function openModal(rank){
+  const wd=words.find(w=>w.rank===rank);
+  if(!wd) return;
+  curW=wd;
+  document.getElementById('m-rk').textContent=`#${wd.rank} · ${wd.cat}`;
+  document.getElementById('m-nat').textContent=wd.native;
+  document.getElementById('m-eng').textContent=wd.en;
+  document.getElementById('m-ex').textContent=wd.ex;
+  document.getElementById('m-exen').textContent=wd.exen;
+  document.getElementById('m-pron').textContent=wd.pron;
+  document.getElementById('m-hook').innerHTML='<div class="ai-load"><div class="dots"><span></span><span></span><span></span></div><span>Generating AI context…</span></div>';
+  const lb=document.getElementById('m-lb');
+  lb.textContent=learned.has(wd.rank)?'✓ Learned':'Mark as Learned';
+  lb.className=learned.has(wd.rank)?'btn btn-g':'btn btn-p';
+  document.getElementById('ovl').classList.add('open');
+  // Generate AI context
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system:'You are an expert language teacher. Given an Italian word, provide rich learning context in JSON. Return ONLY valid JSON, no markdown.',
+        messages:[{role:'user',content:`Italian word: "${wd.native}" (${wd.en})
+Return JSON with exactly these fields:
+{
+  "memory_hook": "vivid mnemonic or story connecting Italian to English",
+  "etymology": "1 sentence about word origin",
+  "common_phrases": ["phrase 1 with translation", "phrase 2 with translation"],
+  "tip": "1 practical learning tip"
+}`}]
+      })
+    });
+    const data=await res.json();
+    const text=data.content[0].text.replace(/\`\`\`json|\`\`\`/g,'').trim();
+    const j=JSON.parse(text);
+    document.getElementById('m-hook').innerHTML=`
+      <p style="font-size:.82rem;color:var(--txt);margin-bottom:.6rem;line-height:1.6">🧠 <strong>Hook:</strong> ${j.memory_hook}</p>
+      <p style="font-size:.78rem;color:var(--mut2);margin-bottom:.6rem;line-height:1.5">📜 <em>${j.etymology}</em></p>
+      ${j.common_phrases.map(p=>`<p style="font-size:.8rem;color:var(--txt);margin:.25rem 0;padding:.3rem .6rem;background:var(--sur3);border-radius:5px">💬 ${p}</p>`).join('')}
+      <p style="font-size:.78rem;color:var(--acc);margin-top:.5rem">💡 ${j.tip}</p>`;
+  }catch(e){
+    document.getElementById('m-hook').innerHTML=`<p style="font-size:.8rem;color:var(--mut2)">${wd.hook}</p>`;
+  }
+}
+function toggleLearn(){
+  if(!curW) return;
+  if(learned.has(curW.rank)) learned.delete(curW.rank);
+  else learned.add(curW.rank);
+  saveLearned();
+  updateSB();
+  const lb=document.getElementById('m-lb');
+  lb.textContent=learned.has(curW.rank)?'✓ Learned':'Mark as Learned';
+  lb.className=learned.has(curW.rank)?'btn btn-g':'btn btn-p';
+  render();
+}
+function closeModal(){document.getElementById('ovl').classList.remove('open');}
+function closeOvl(e){if(e.target===document.getElementById('ovl')) closeModal();}
+
+// ─── Flashcards ────────────────────────────────────────────────────────────────
+function initFC(){
+  fcQueue=words.filter(w=>!learned.has(w.rank)).sort((a,b)=>a.rank-b.rank);
+  if(!fcQueue.length) fcQueue=[...words];
+  fcIdx=0; fcSeen=0; fcKnown=0; fcFlipped=false;
+  loadCard();
+}
+function loadCard(){
+  if(!fcQueue.length){document.getElementById('fc-w').textContent='All done!';return;}
+  const w=fcQueue[fcIdx%fcQueue.length];
+  document.getElementById('fc-w').textContent=w.native;
+  document.getElementById('fc-h').textContent=`#${w.rank} · ${w.cat}`;
+  document.getElementById('fc-tr').textContent=w.en;
+  document.getElementById('fc-ex').textContent=w.ex;
+  document.getElementById('fc-rk').textContent=w.rank;
+  document.getElementById('fc-ct').textContent=w.cat;
+  document.getElementById('fc-inn').classList.remove('flip');
+  fcFlipped=false;
+  const pct=(fcIdx/Math.max(fcQueue.length,1)*100).toFixed(0);
+  document.getElementById('fc-fill').style.width=pct+'%';
+  document.getElementById('fc-seen').textContent=fcSeen+' seen this session';
+  document.getElementById('fc-known').textContent=fcKnown+' marked known';
+}
+function flipCard(){
+  document.getElementById('fc-inn').classList.toggle('flip');
+  fcFlipped=!fcFlipped;
+}
+function next(know){
+  const w=fcQueue[fcIdx%fcQueue.length];
+  if(know){
+    learned.add(w.rank);
+    saveLearned();
+    updateSB();
+    fcKnown++;
+    fcQueue.splice(fcIdx%fcQueue.length,1);
+    if(!fcQueue.length){fcQueue=words.filter(w=>!learned.has(w.rank));if(!fcQueue.length) fcQueue=[...words];}
+  } else {
+    fcIdx++;
+  }
+  fcSeen++;
+  loadCard();
+}
+
+// ─── Streak ────────────────────────────────────────────────────────────────────
+function renderCal(){
+  const g=document.getElementById('s-grid');
+  const today=new Date().toDateString();
+  g.innerHTML='';
+  for(let i=29;i>=0;i--){
+    const d=new Date(); d.setDate(d.getDate()-i);
+    const ds=d.toDateString();
+    const day=document.createElement('div');
+    day.className='s-day'+(streak.includes(ds)?' on':'')+(ds===today?' today':'');
+    day.textContent=d.getDate();
+    day.onclick=()=>{
+      if(streak.includes(ds)) streak.splice(streak.indexOf(ds),1);
+      else streak.push(ds);
+      try{localStorage.setItem('ld_streak',JSON.stringify(streak));}catch(e){}
+      renderCal();
+    };
+    g.appendChild(day);
+  }
+  // Calc streak
+  let s=0,t=streak.length;
+  const now=new Date();
+  for(let i=0;i<365;i++){
+    const d=new Date(now); d.setDate(d.getDate()-i);
+    if(streak.includes(d.toDateString())) s++;
+    else if(i>0) break;
+  }
+  document.getElementById('ss-s').textContent=s;
+  document.getElementById('ss-t').textContent=t;
+  document.getElementById('ss-p').textContent=Math.round(t/30*100)+'%';
+}
+
+// ─── DiSSS Checkboxes ─────────────────────────────────────────────────────────
+function chk(el){
+  el.classList.toggle('done');
+  el.textContent=el.classList.contains('done')?'✓':'';
+}
+
+// ─── Diagnostic Sentences ────────────────────────────────────────────────────
+const DIAG = {
+  it: [
+    {n:1, en:"The apple is red.", tr:"La mela è rossa.", why:"Tests: definite article (la), adjective agreement, verb essere"},
+    {n:2, en:"It is John's apple.", tr:"È la mela di Giovanni.", why:"Tests: possessive with 'di' — Italian has no apostrophe-s"},
+    {n:3, en:"I give John the apple.", tr:"Do la mela a Giovanni.", why:"Tests: indirect object with 'a', no 'to' word needed"},
+    {n:4, en:"We give him the apple.", tr:"Gli diamo la mela.", why:"Tests: indirect object pronouns (gli = to him), pronoun position"},
+    {n:5, en:"He gives it to her.", tr:"Gliela dà.", why:"Tests: combined double pronouns — one of Italian's trickiest features"},
+    {n:6, en:"She gives it to us.", tr:"Ce la dà.", why:"Tests: more double pronouns — 'ce la' (to us + it)"},
+    {n:7, en:"Is the apple red?", tr:"La mela è rossa?", why:"Tests: question formation — same as statement, just intonation"},
+    {n:8, en:"The apples are red.", tr:"Le mele sono rosse.", why:"Tests: plural articles (le), noun + adjective plural agreement"},
+    {n:9, en:"I must give it to him.", tr:"Devo dargliela.", why:"Tests: modal verb + infinitive + double pronoun attached"},
+    {n:10, en:"I want to give it to her.", tr:"Voglio dargliela.", why:"Tests: volere + infinitive + pronoun — same structure as must"},
+    {n:11, en:"I'm going to give it to her.", tr:"Gliela darò.", why:"Tests: future tense formation — darò = I will give"},
+    {n:12, en:"I gave it to him.", tr:"Gliela ho data.", why:"Tests: passato prossimo (past) + agreement of past participle"}
+  ],
+  uk: [
+    {n:1, en:"The apple is red.", tr:"Яблуко червоне.", why:"Tests: no article in Ukrainian, adjective agrees with neuter noun"},
+    {n:2, en:"It is John's apple.", tr:"Це яблуко Джона.", why:"Tests: genitive case for possession — no apostrophe-s, word order"},
+    {n:3, en:"I give John the apple.", tr:"Я даю Джонові яблуко.", why:"Tests: dative case (-ові ending) for indirect object"},
+    {n:4, en:"We give him the apple.", tr:"Ми даємо йому яблуко.", why:"Tests: dative pronoun (йому = to him), verb conjugation (даємо)"},
+    {n:5, en:"He gives it to her.", tr:"Він дає їй його.", why:"Tests: dative pronoun (їй), accusative pronoun (його)"},
+    {n:6, en:"She gives it to us.", tr:"Вона дає нам його.", why:"Tests: dative plural pronoun (нам = to us)"},
+    {n:7, en:"Is the apple red?", tr:"Яблуко червоне?", why:"Tests: questions formed by intonation only — no word reordering"},
+    {n:8, en:"The apples are red.", tr:"Яблука червоні.", why:"Tests: neuter plural (яблука), adjective plural agreement (червоні)"},
+    {n:9, en:"I must give it to him.", tr:"Я мушу дати йому його.", why:"Tests: modal мушу + infinitive дати + dative + accusative"},
+    {n:10, en:"I want to give it to her.", tr:"Я хочу дати їй його.", why:"Tests: хочу + infinitive — same modal structure as must"},
+    {n:11, en:"I'm going to give it to her.", tr:"Я дам їй його.", why:"Tests: perfective future (дам) — Ukrainian uses aspect, not tense"},
+    {n:12, en:"I gave it to him.", tr:"Я дав йому його.", why:"Tests: past tense (дав) — gender-marked, дав (m) / дала (f)"}
+  ]
+};
+
+function renderDiag() {
+  const g = document.getElementById('diag-grid');
+  if (!g) return;
+  if(!DIAG[lang]){g.innerHTML='<p style="color:var(--mut2);padding:1rem">No diagnostics for this language.</p>';return;}
+  g.innerHTML = DIAG[lang].map(d => `
+    <div class="diag-card">
+      <div class="diag-n">Sentence ${d.n} of 12</div>
+      <div class="diag-en">${d.en}</div>
+      <div class="diag-tr">${d.tr}</div>
+      <div class="diag-why">🔬 ${d.why}</div>
+    </div>`).join('');
+}
+
+// ─── Cyrillic Alphabet ────────────────────────────────────────────────────────
+const CYRILLIC = {
+  vowels: [
+    {l:"А а", r:"a", ex:"як а в 'апельсин'"},
+    {l:"Е е", r:"e", ex:"як е в 'елемент'"},
+    {l:"Є є", r:"ye", ex:"як ye в 'yes' — тільки в українській"},
+    {l:"И и", r:"ih", ex:"схоже на короткий 'і'"},
+    {l:"І і", r:"i", ex:"як і в 'Індія'"},
+    {l:"Ї ї", r:"yi", ex:"як yi в 'yield' — тільки в українській"},
+    {l:"О о", r:"o", ex:"як о в 'Опера'"},
+    {l:"У у", r:"u", ex:"як у в 'Університет'"},
+    {l:"Ю ю", r:"yu", ex:"як yu в 'you'"},
+    {l:"Я я", r:"ya", ex:"як ya в 'yard'"},
+  ],
+  consonants: [
+    {l:"Б б", r:"b", ex:"як б в 'банк'"},
+    {l:"В в", r:"v", ex:"як в в 'вода'"},
+    {l:"Г г", r:"h/g", ex:"м'який г — 'голос'"},
+    {l:"Ґ ґ", r:"g", ex:"твердий г — 'ґанок'"},
+    {l:"Д д", r:"d", ex:"як д в 'день'"},
+    {l:"Ж ж", r:"zh", ex:"як zh в 'measure'"},
+    {l:"З з", r:"z", ex:"як з в 'зима'"},
+    {l:"К к", r:"k", ex:"як к в 'кава'"},
+    {l:"Л л", r:"l", ex:"як л в 'лист'"},
+    {l:"М м", r:"m", ex:"як м в 'мати'"},
+    {l:"Н н", r:"n", ex:"як н в 'ніч'"},
+    {l:"П п", r:"p", ex:"як п в 'пити'"},
+    {l:"Р р", r:"r", ex:"рокочучий р — 'робота'"},
+    {l:"С с", r:"s", ex:"як с в 'серце'"},
+    {l:"Т т", r:"t", ex:"як т в 'тато'"},
+    {l:"Ф ф", r:"f", ex:"як ф в 'фільм'"},
+    {l:"Х х", r:"kh", ex:"як ch в 'loch'"},
+    {l:"Ц ц", r:"ts", ex:"як ts в 'cats'"},
+    {l:"Ч ч", r:"ch", ex:"як ch в 'church'"},
+    {l:"Ш ш", r:"sh", ex:"як sh в 'show'"},
+    {l:"Щ щ", r:"shch", ex:"як shch — 'що'"},
+  ],
+  special: [
+    {l:"ь", r:"soft sign", ex:"пом'якшує попередній приголосний"},
+    {l:"' ", r:"apostrophe", ex:"роздільний знак — м'який, в'їзд"},
+  ]
+};
+
+function renderAlpha() {
+  ['vowels','consonants','special'].forEach(type => {
+    const g = document.getElementById('alpha-' + type);
+    if (!g) return;
+    g.innerHTML = CYRILLIC[type].map(c => `
+      <div class="alpha-card">
+        <div class="alpha-letter">${c.l}</div>
+        <div class="alpha-roman">${c.r}</div>
+        <div class="alpha-ex">${c.ex}</div>
+      </div>`).join('');
+  });
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+updateSB();
+
+</script>
+</body>
+</html>
