@@ -159,10 +159,31 @@ body.uk .tog-pill{left:calc(50%)}
 .alpha-intro{background:var(--sur);border:1px solid var(--brd);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1rem;font-size:.82rem;color:var(--mut2);line-height:1.7}
 .alpha-intro strong{color:var(--txt)}
 
-@media(max-width:700px){.sidebar{display:none}.panel{padding:1rem 1.2rem}}
+/* ── Mobile Menu ── */
+.mobile-menu-btn{display:none;position:fixed;top:1rem;left:1rem;z-index:1100;width:44px;height:44px;border-radius:12px;background:var(--sur);border:1px solid var(--bdr);color:var(--txt);font-size:1.2rem;cursor:pointer;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.mobile-menu-btn:active{transform:scale(.95)}
+.mobile-lang-tog{display:none;position:fixed;top:1rem;right:1rem;z-index:1100;background:var(--sur);border:1px solid var(--bdr);border-radius:10px;padding:.4rem .7rem;font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--txt);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3);align-items:center;gap:.4rem}
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);z-index:1050;opacity:0;transition:opacity .3s}
+.mobile-overlay.open{opacity:1}
+@media(max-width:700px){
+  .mobile-menu-btn{display:flex}
+  .mobile-lang-tog{display:flex}
+  .sidebar{position:fixed;left:0;top:0;height:100vh;z-index:1060;transform:translateX(-100%);transition:transform .35s cubic-bezier(.34,1.56,.64,1);box-shadow:4px 0 20px rgba(0,0,0,.3)}
+  .sidebar.open{transform:translateX(0)}
+  .main{width:100%}
+  .panel{padding:1rem 1.2rem;padding-top:5rem}
+  .ph{padding-top:5rem}
+  .lang-tog{margin-bottom:5rem}
+}
 </style>
 </head>
 <body id="body">
+<button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+<button class="mobile-lang-tog" id="mobile-lang-tog" onclick="toggleMobileLang()">
+  <span id="mobile-lang-flag">🇮🇹</span>
+  <span id="mobile-lang-code">IT</span>
+</button>
+<div class="mobile-overlay" id="mobile-overlay" onclick="closeMobileMenu()"></div>
 <div class="app">
 <aside class="sidebar">
   <div class="logo-wrap"><div class="logo">Lingua<span id="la">DiSSS</span></div><div class="logo-sub">Tim Ferriss · DOAC</div></div>
@@ -1272,15 +1293,56 @@ function show(id,btn){
   if(id==='stakes') renderCal();
   if(id==='diagnostic') renderDiag();
   if(id==='alphabet') renderAlpha();
+  // Close mobile menu on navigation
+  if(window.innerWidth<=700) closeMobileMenu();
 }
 
 // ─── Language ─────────────────────────────────────────────────────────────────
+// ─── Mobile Menu ──────────────────────────────────────────────────────────────
+function toggleMobileMenu(){
+  const sidebar=document.querySelector('.sidebar');
+  const overlay=document.getElementById('mobile-overlay');
+  const isOpen=sidebar.classList.contains('open');
+  if(isOpen){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    setTimeout(()=>overlay.style.display='none',300);
+  }else{
+    overlay.style.display='block';
+    setTimeout(()=>overlay.classList.add('open'),10);
+    sidebar.classList.add('open');
+  }
+}
+function closeMobileMenu(){
+  const sidebar=document.querySelector('.sidebar');
+  const overlay=document.getElementById('mobile-overlay');
+  sidebar.classList.remove('open');
+  overlay.classList.remove('open');
+  setTimeout(()=>overlay.style.display='none',300);
+}
+function toggleMobileLang(){
+  const newLang=lang==='it'?'uk':'it';
+  setLang(newLang);
+}
+function updateMobileLangToggle(){
+  const flag=document.getElementById('mobile-lang-flag');
+  const code=document.getElementById('mobile-lang-code');
+  if(lang==='it'){
+    flag.textContent='🇮🇹';
+    code.textContent='IT';
+  }else{
+    flag.textContent='🇺🇦';
+    code.textContent='UK';
+  }
+}
+
 function setLang(l){
   lang=l;
   document.body.className=l==='uk'?'uk':'';
   document.getElementById('btn-it').classList.toggle('active',l==='it');
   document.getElementById('btn-uk').classList.toggle('active',l==='uk');
   document.getElementById('ph-lang').textContent=l==='it'?'🇮🇹 Italian':'🇺🇦 Ukrainian';
+  updateMobileLangToggle();
   const navAlpha=document.getElementById('nav-alphabet');
   if(navAlpha) navAlpha.style.display=l==='uk'?'':'none';
   initWords();
